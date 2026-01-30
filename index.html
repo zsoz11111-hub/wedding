@@ -137,12 +137,68 @@
             border: none;
         }
 
-        /* 푸터 */
-        .footer { padding: 50px 0; background: #eee; color: #999; font-size: 0.8rem; }
-    </style>
-</head>
-<body>
+/* 푸터 스타일 수정본 (얇고 작게) */
+.footer {
+    padding: 15px 0;  /* 50px -> 15px로 확 줄임 */
+    background: #f5f5f5; /* 배경색을 연하게 */
+    color: #aaa;      /* 글자색을 더 연하게 */
+    font-size: 0.7rem; /* 글자 크기 축소 */
+    text-align: center;
+}
 
+        /* === ▼▼▼ 여기에 BGM 버튼 코드 붙여넣기 ▼▼▼ === */
+        .music-btn {
+            position: fixed;
+            top: 20px; right: 20px;
+            width: 50px; height: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 999;
+            font-size: 24px;
+        }
+        .music-on { animation: spin 3s linear infinite; color: var(--main-color); }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        /* === ▲▲▲ 여기까지 ▲▲▲ === */
+
+    </style> </head>
+<body>
+<audio id="bgmAudio" loop> <source src="bgm.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicBtn" class="music-btn" onclick="toggleMusic()">
+    ♬ </div>
+
+<div class="container"> ```
+
+**③ 자바스크립트 추가 (script 태그 안쪽)**
+맨 아래 `<script>` 태그 안쪽, 기존 코드 밑에 추가하세요.
+
+```javascript
+// --- BGM 컨트롤 기능 ---
+var bgm = document.getElementById("bgmAudio");
+var musicBtn = document.getElementById("musicBtn");
+var isPlaying = false;
+
+function toggleMusic() {
+    if (isPlaying) {
+        bgm.pause();
+        musicBtn.classList.remove("music-on");
+    } else {
+        bgm.play();
+        musicBtn.classList.add("music-on");
+    }
+    isPlaying = !isPlaying;
+}
+
+// (선택사항) 페이지 로드 시 자동 재생 시도
+// 주의: 모바일 브라우저 정책상 터치 전 자동 재생이 막힐 수 있습니다.
+window.onload = function() {
+    // bgm.play(); // 자동 재생을 원하면 주석 해제 (비추천)
+};
+    
 <div class="container">
     <div class="cover">
         <div class="cover-title">WEDDING INVITATION</div>
@@ -275,6 +331,7 @@
 </body>
 
 </html>
+
 
 
 
