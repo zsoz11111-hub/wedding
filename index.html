@@ -304,7 +304,7 @@
         });
     }
 
-    // 3. BGM 음악 재생 함수
+    // 3. BGM 컨트롤 및 자동재생 (강력 버전)
     var bgm = document.getElementById("bgmAudio");
     var musicBtn = document.getElementById("musicBtn");
     var isPlaying = false;
@@ -313,16 +313,44 @@
         if (isPlaying) {
             bgm.pause();
             musicBtn.classList.remove("music-on");
+            isPlaying = false;
         } else {
             bgm.play();
             musicBtn.classList.add("music-on");
+            isPlaying = true;
         }
-        isPlaying = !isPlaying;
+    }
+
+    // [핵심] 자동 재생 시도 + 실패 시 첫 터치에 재생
+    window.onload = function() {
+        // 1. 페이지 열리자마자 재생 시도
+        var playPromise = bgm.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // 성공하면 버튼 돌리기
+                musicBtn.classList.add("music-on");
+                isPlaying = true;
+            }).catch(error => {
+                // 실패하면(아이폰 등) '화면 터치' 기다리기
+                document.body.addEventListener('click', firstTouchPlay, { once: true });
+                document.body.addEventListener('touchstart', firstTouchPlay, { once: true });
+            });
+        }
+    };
+
+    // 첫 터치 시 실행되는 함수
+    function firstTouchPlay() {
+        if (!isPlaying) {
+            bgm.play();
+            musicBtn.classList.add("music-on");
+            isPlaying = true;
+        }
     }
 
     // 4. 날짜 만료 시 자동 삭제 기능
-    var today = new Date(); // 오늘 날짜
-    var expireDate = new Date("2026-12-01"); // [설정] 이 날짜 이후로 안보임
+    var today = new Date();
+    var expireDate = new Date("2026-12-01"); // [설정] 만료 날짜
 
     if (today > expireDate) {
         document.body.innerHTML = `
@@ -338,3 +366,4 @@
 
 </body>
 </html>
+
