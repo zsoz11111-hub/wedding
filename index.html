@@ -33,6 +33,37 @@
     font-family: 'Noto Serif KR', serif;
     letter-spacing: 2px;
 }
+/* === 라이트박스(사진 확대) 디자인 === */
+        .lightbox {
+            display: none; /* 평소엔 숨김 */
+            position: fixed; /* 화면에 고정 */
+            z-index: 1000; /* 제일 위에 */
+            padding-top: 50px;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* 검은색 배경 */
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px; /* 너무 커지지 않게 */
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        /* 닫기 버튼(X) */
+        .close-lightbox {
+            position: absolute;
+            top: 20px; right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-lightbox:hover { color: #bbb; }
+
         
         body {
             margin: 0; padding: 0;
@@ -297,6 +328,15 @@
     <div class="footer">
         Created by Jin
     </div>
+<div class="footer">Created by Jin</div>
+    
+    </div> ```
+
+**[복사할 코드]**
+```html
+<div id="myLightbox" class="lightbox" onclick="closePhoto()">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="img01">
 
 </div> <script>
     // 1. 계좌번호 토글 함수
@@ -374,10 +414,30 @@
             </div>
         `;
     }
+    // === 5. 갤러리 사진 클릭 시 확대 기능 ===
+    
+    // 모든 갤러리 이미지 가져오기
+    var galleryImages = document.querySelectorAll(".gallery-img");
+    var lightbox = document.getElementById("myLightbox");
+    var lightboxImg = document.getElementById("img01");
+
+    // 사진마다 클릭 이벤트 붙이기
+    galleryImages.forEach(function(img) {
+        img.onclick = function() {
+            lightbox.style.display = "block"; // 팝업 보이기
+            lightboxImg.src = this.src;       // 클릭한 사진 주소를 팝업에 넣기
+        }
+    });
+
+    // 팝업 닫기 함수
+    function closePhoto() {
+        lightbox.style.display = "none";
+    }
 </script>
 
 </body>
 </html>
+
 
 
 
