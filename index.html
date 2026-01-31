@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="서진성 & 김성은 결혼합니다">
     <meta property="og:description" content="2026년 11월 15일, 저희의 시작을 축복해주세요.">
-    <meta property="og:image" content="thumb.jpg"> 
+    <meta property="og:image" content="https://zsoz11111-hub.github.io/wedding/thumb.jpg">
     <title>모바일 청첩장</title>
     
     <style>
         /* 폰트 불러오기 (명조체) */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&display=swap');
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&display=swap');
 
         /* [디자인 설정 영역] */
         :root {
@@ -21,10 +22,21 @@
         }
         
         * { box-sizing: border-box; }
+
+        /* === [중요] 제목 전용 폰트 설정 (명조체) === */
+.cover-title, .cover-names, .sec-title, .calendar-title, .highlight-name {
+    font-family: 'Noto Serif KR', serif;
+    letter-spacing: 0.5px; /* 글자 간격 살짝 넓게 */
+}
+/* 영문 날짜는 더 고급스럽게 */
+.cover-date {
+    font-family: 'Noto Serif KR', serif;
+    letter-spacing: 2px;
+}
         
         body {
             margin: 0; padding: 0;
-            font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif; /* 폰트 적용 */
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
             background-color: #f5f5f5;
             color: var(--text-color);
             line-height: 1.6;
@@ -366,5 +378,6 @@
 
 </body>
 </html>
+
 
 
