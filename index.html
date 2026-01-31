@@ -9,9 +9,10 @@
     <title>모바일 청첩장</title>
     
     <style>
-        /* 폰트 불러오기 (명조체) */
+        /* [중요] 폰트 가져오기 (맨 윗줄 유지) */
         @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
 
         /* [디자인 설정 영역] */
         :root {
@@ -22,90 +23,30 @@
         }
         
         * { box-sizing: border-box; }
-
-/* 영어 제목 수정 (Dancing Script 폰트 적용) */
-        .cover-title { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.0rem; /* 글자 크기를 좀 더 키움 */
-            margin-bottom: 10px; 
-            letter-spacing: 1px;
-            font-weight: 700; /* 굵게 설정해서 잘 보이게 */
-        }
-/* 영문 날짜는 더 고급스럽게 */
-.cover-date {
-    font-family: 'Noto Serif KR', serif;
-    letter-spacing: 2px;
-        }
-        /* === 라이트박스(사진 확대) 디자인 (중앙 정렬+화살표 추가됨) === */
-                .lightbox {
-                    display: none; /* 평소엔 숨김 */
-                    position: fixed;
-                    z-index: 1000;
-                    left: 0; top: 0;
-                    width: 100%; height: 100%;
-                    background-color: rgba(0, 0, 0, 0.95); /* 배경을 좀 더 어둡게 */
-                    /* ▼▼▼ 핵심: Flexbox로 중앙 정렬 ▼▼▼ */
-                    justify-content: center;
-                    align-items: center;
-                }
-                .lightbox-content {
-                    max-width: 90%;
-                    max-height: 80vh; /* 화면 높이의 80%까지만 */
-                    object-fit: contain; /* 비율 유지하며 틀 안에 맞춤 */
-                    border-radius: 5px;
-                    box-shadow: 0 0 20px rgba(255,255,255,0.2);
-                }
-                /* 닫기 버튼(X) */
-                .close-lightbox {
-                    position: absolute;
-                    top: 20px; right: 30px;
-                    color: #f1f1f1;
-                    font-size: 40px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    z-index: 1001;
-                }
-                /* ▼▼▼ 화살표 버튼 스타일 추가 ▼▼▼ */
-                .arrow {
-                    cursor: pointer;
-                    position: absolute;
-                    top: 50%;
-                    width: auto;
-                    padding: 16px;
-                    margin-top: -30px; /* 중앙 보정 */
-                    color: white;
-                    font-weight: bold;
-                    font-size: 30px;
-                    transition: 0.3s;
-                    user-select: none;
-                    z-index: 1001;
-                }
-                .prev { left: 10px; border-radius: 0 3px 3px 0; }
-                .next { right: 10px; border-radius: 3px 0 0 3px; }
-                .arrow:hover { background-color: rgba(0,0,0,0.5); }
         
         body {
             margin: 0; padding: 0;
+            /* 기본 폰트: 깔끔한 프리텐다드 */
             font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
             background-color: #f5f5f5;
             color: var(--text-color);
             line-height: 1.6;
         }
-            /* 모바일 화면 중앙 정렬 컨테이너 */
-            .container {
-                max-width: 500px;
-                margin: 0 auto;
-                background-color: var(--bg-color);
-                min-height: 100vh;
-                box-shadow: 0 0 15px rgba(0,0,0,0.05);
-                
-                /* ▼▼▼ 이 두 줄을 꼭 추가하세요! ▼▼▼ */
-                position: relative; /* 자식 요소의 기준점이 됨 */
-                padding-bottom: 60px; /* 맨 아래 글씨랑 내용이 겹치지 않게 여백 확보 */
-            }
+
+        /* 모바일 화면 중앙 정렬 컨테이너 */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            
+            /* 푸터 왼쪽 아래 고정을 위한 설정 */
+            position: relative; 
+            padding-bottom: 60px; 
+        }
 
         /* 1. 메인 커버 */
-    /* 1. 메인 커버 (수정됨: 필기체 + 모던 고딕) */
         .cover {
             position: relative;
             width: 100%;
@@ -122,25 +63,25 @@
             text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
         }
         
-        /* 영어 제목은 우아한 필기체로 크게 */
+        /* 영어 제목: Dancing Script 적용 (우아한 필기체) */
         .cover-title { 
-            font-family: 'Great Vibes', cursive; 
-            font-size: 2.5rem; /* 글씨 크기 키움 */
-            margin-bottom: 10px; 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 3.2rem; 
+            margin-bottom: 5px; 
+            font-weight: 600; 
             letter-spacing: 1px;
-            font-weight: normal;
         }
         
-        /* 이름은 아주 깔끔한 고딕체로 */
+        /* 이름: 깔끔한 프리텐다드 */
         .cover-names { 
             font-family: 'Pretendard', sans-serif;
-            font-size: 1.6rem; 
-            font-weight: 500; /* 너무 굵지 않게 */
+            font-size: 1.5rem; 
+            font-weight: 500;
             margin-bottom: 15px; 
-            letter-spacing: 2px; /* 자간을 넓혀서 세련되게 */
+            letter-spacing: 2px;
         }
         
-        /* 날짜도 깔끔하게 */
+        /* 날짜 */
         .cover-date { 
             font-family: 'Pretendard', sans-serif;
             font-size: 0.9rem; 
@@ -150,132 +91,74 @@
 
         /* 섹션 공통 */
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
+        
+        /* 소제목 스타일 */
         .sec-title {
             color: var(--main-color);
             font-size: 1.1rem;
             font-weight: bold;
             margin-bottom: 25px;
             letter-spacing: 1px;
+            font-family: 'Pretendard', sans-serif;
         }
 
-        /* 2. 초대 문구 */
+        /* 초대 문구 & 달력 스타일 */
         .greeting { font-size: 0.95rem; color: var(--gray-text); line-height: 2.2; margin-bottom: 30px;}
         .highlight-name { font-weight: bold; color: #000; font-size: 1.1rem; }
-
-        /* 3. 달력 */
-        .calendar-box {
-            border: 1px solid #eee;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 10px;
-        }
-        .calendar-title { font-size: 1.2rem; margin-bottom: 10px; font-weight: bold;}
+        
+        .calendar-box { border: 1px solid #eee; padding: 20px; border-radius: 10px; margin: 20px 10px; }
+        .calendar-title { font-size: 1.2rem; margin-bottom: 10px; font-weight: bold; font-family: 'Noto Serif KR', serif; }
         .d-day { color: var(--main-color); font-weight: bold; margin-bottom: 20px; display: block;}
 
-        /* 4. 갤러리 */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-        }
-        .gallery-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            background-color: #eee;
-            border-radius: 4px;
-        }
+        /* 갤러리 그리드 */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+        .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background-color: #eee; border-radius: 4px; cursor: pointer; }
 
-        /* 5. 오시는 길 */
+        /* 지도 버튼 */
         .map-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
-        .btn {
-            padding: 12px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            flex: 1;
-            text-align: center;
-        }
+        .btn { padding: 12px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; flex: 1; text-align: center; }
         .btn-naver { background-color: #03C75A; color: #fff; }
         .btn-kakao { background-color: #FEE500; color: #000; }
 
-        /* 6. 계좌번호 */
-        .account-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border: none;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Noto Serif KR', serif; /* 버튼에도 폰트 적용 */
-        }
-        .account-info {
-            display: none;
-            padding: 20px;
-            background-color: #fff;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-        }
-        .copy-btn {
-            float: right;
-            background: #eee;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            border: none;
-        }
+        /* 계좌번호 스타일 */
+        .account-btn { width: 100%; padding: 15px; background-color: #f9f9f9; border: none; border-bottom: 1px solid #eee; text-align: left; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; font-family: 'Pretendard', sans-serif; }
+        .account-info { display: none; padding: 20px; background-color: #fff; font-size: 0.9rem; color: #555; text-align: left; }
+        .copy-btn { float: right; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; border: none; }
 
-        /* 푸터 (왼쪽 아래 고정 스타일) */
+        /* 푸터 (왼쪽 아래 고정) */
         .footer {
-            position: absolute; /* 절대 위치 사용 */
-            bottom: 20px;       /* 바닥에서 20px 띄움 */
-            left: 20px;         /* 왼쪽 벽에서 20px 띄움 */
-            
-            font-size: 0.7rem;  /* 글씨 크기 작게 */
-            color: #cccccc;     /* 아주 연한 회색 (튀지 않게) */
-            font-family: 'Pretendard', sans-serif; /* 폰트 통일 */
-            
-            /* 배경색 삭제 (깔끔하게 글씨만) */
-            background: none; 
-            padding: 0;
-            text-align: left;
+            position: absolute;
+            bottom: 20px; left: 20px;
+            font-size: 0.7rem; color: #cccccc;
+            font-family: 'Pretendard', sans-serif;
+            background: none; padding: 0; text-align: left;
         }
 
-        /* BGM 버튼 스타일 */
-        .music-btn {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 50px; height: 50px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            border: 1px solid #eee;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer; z-index: 999;
-            font-size: 24px;
-        }
+        /* BGM 버튼 */
+        .music-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; font-size: 24px; }
         .music-on { animation: spin 3s linear infinite; color: var(--main-color); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
+        /* 라이트박스 (중앙 정렬 + 화살표) */
+        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
+        .lightbox-content { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .close-lightbox { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
+        .arrow { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -30px; color: white; font-weight: bold; font-size: 30px; transition: 0.3s; user-select: none; z-index: 1001; }
+        .prev { left: 10px; border-radius: 0 3px 3px 0; }
+        .next { right: 10px; border-radius: 3px 0 0 3px; }
+        .arrow:hover { background-color: rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
-<audio id="bgmAudio" loop>
+<audio id="bgmAudio" autoplay loop>
     <source src="bgm.mp3" type="audio/mpeg">
 </audio>
-
 <div id="musicBtn" class="music-btn" onclick="toggleMusic()">♬</div>
 
 <div class="container">
     <div class="cover">
-        <div class="cover-title">WEDDING INVITATION</div>
+        <div class="cover-title">Wedding Invitation</div>
         <div class="cover-names">서진성 & 김성은</div>
         <div class="cover-date">2026. 11. 15. SUN PM 12:00</div>
     </div>
@@ -323,7 +206,6 @@
     <div class="section">
         <div class="sec-title">LOCATION</div>
         <img src="map.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
-        
         <div class="map-buttons">
             <a href="https://naver.me/GUwSjbeY" class="btn btn-naver" target="_blank">네이버 지도</a>
             <a href="https://kko.to/L-Hwc-TRAj" class="btn btn-kakao" target="_blank">카카오맵</a>
@@ -381,19 +263,15 @@
     <div class="footer">
         Created by Jin
     </div>
-<div class="footer">Created by Jin</div>
-    
-    </div> ```
 
-**[복사할 코드]**
-```html
-<div id="myLightbox" class="lightbox">
+</div> <div id="myLightbox" class="lightbox">
     <span class="close-lightbox" onclick="closePhoto()">&times;</span>
     <a class="arrow prev" onclick="changeImage(-1)">&#10094;</a>
     <a class="arrow next" onclick="changeImage(1)">&#10095;</a>
     <img class="lightbox-content" id="img01">
+</div>
 
-</div> <script>
+<script>
     // 1. 계좌번호 토글 함수
     function toggleAcc(id) {
         var x = document.getElementById(id);
@@ -411,7 +289,7 @@
         });
     }
 
-    // 3. BGM 컨트롤 및 자동재생 (강력 버전)
+    // 3. BGM 컨트롤 및 자동재생
     var bgm = document.getElementById("bgmAudio");
     var musicBtn = document.getElementById("musicBtn");
     var isPlaying = false;
@@ -428,25 +306,20 @@
         }
     }
 
-    // [핵심] 자동 재생 시도 + 실패 시 첫 터치에 재생
+    // 자동 재생 시도 (실패 시 첫 터치에 재생)
     window.onload = function() {
-        // 1. 페이지 열리자마자 재생 시도
         var playPromise = bgm.play();
-
         if (playPromise !== undefined) {
             playPromise.then(_ => {
-                // 성공하면 버튼 돌리기
                 musicBtn.classList.add("music-on");
                 isPlaying = true;
             }).catch(error => {
-                // 실패하면(아이폰 등) '화면 터치' 기다리기
                 document.body.addEventListener('click', firstTouchPlay, { once: true });
                 document.body.addEventListener('touchstart', firstTouchPlay, { once: true });
             });
         }
     };
 
-    // 첫 터치 시 실행되는 함수
     function firstTouchPlay() {
         if (!isPlaying) {
             bgm.play();
@@ -455,9 +328,9 @@
         }
     }
 
-    // 4. 날짜 만료 시 자동 삭제 기능
+    // 4. 날짜 만료 시 자동 삭제
     var today = new Date();
-    var expireDate = new Date("2026-12-01"); // [설정] 만료 날짜
+    var expireDate = new Date("2026-12-01"); 
 
     if (today > expireDate) {
         document.body.innerHTML = `
@@ -469,43 +342,36 @@
             </div>
         `;
     }
-// === 5. 갤러리 사진 클릭 시 확대 기능 (화살표 이동 추가) ===
+
+    // 5. 갤러리 라이트박스 (화살표 포함)
     var lightbox = document.getElementById("myLightbox");
     var lightboxImg = document.getElementById("img01");
-    // 갤러리 이미지들을 '배열'로 가져옵니다.
     var galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
-    var currentIndex = 0; // 현재 보고 있는 사진 번호
+    var currentIndex = 0;
 
-    // 사진마다 클릭 이벤트 붙이기
     galleryImages.forEach(function(img, index) {
         img.onclick = function() {
-            lightbox.style.display = "flex"; // ★중요★ block이 아니라 flex로 띄워야 중앙 정렬됨
+            lightbox.style.display = "flex";
             lightboxImg.src = this.src;
-            currentIndex = index; // 클릭한 사진 번호 기억
+            currentIndex = index;
         }
     });
 
-    // 닫기 함수
     function closePhoto() {
         lightbox.style.display = "none";
     }
 
-    // ▼▼▼ 화살표 클릭 시 이미지 변경 함수 ▼▼▼
     function changeImage(n) {
-        currentIndex += n; // 번호를 1 더하거나 뺌
-
-        // 맨 끝에서 더 가면 처음으로, 처음에서 뒤로 가면 맨 끝으로 (순환)
+        currentIndex += n;
         if (currentIndex >= galleryImages.length) {
             currentIndex = 0;
         } else if (currentIndex < 0) {
             currentIndex = galleryImages.length - 1;
         }
-
-        // 바뀐 번호의 사진을 보여줌
         lightboxImg.src = galleryImages[currentIndex].src;
     }
 
-    // (선택사항) 까만 배경 부분을 클릭해도 닫히게 하기
+    // 배경 클릭 시 닫기
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             closePhoto();
@@ -515,9 +381,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
