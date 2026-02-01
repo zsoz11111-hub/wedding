@@ -9,7 +9,7 @@
     <title>모바일 청첩장</title>
     
     <style>
-        /* [중요] 폰트 가져오기 (맨 윗줄 유지) */
+        /* 폰트 가져오기 */
         @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
@@ -26,22 +26,20 @@
         
         body {
             margin: 0; padding: 0;
-            /* 기본 폰트: 깔끔한 프리텐다드 */
             font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
             background-color: #f5f5f5;
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
         }
 
-        /* 모바일 화면 중앙 정렬 컨테이너 */
+        /* 컨테이너 */
         .container {
             max-width: 500px;
             margin: 0 auto;
             background-color: var(--bg-color);
             min-height: 100vh;
             box-shadow: 0 0 15px rgba(0,0,0,0.05);
-            
-            /* 푸터 왼쪽 아래 고정을 위한 설정 */
             position: relative; 
             padding-bottom: 60px; 
         }
@@ -62,84 +60,53 @@
             color: #fff;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
         }
-        
-        /* 영어 제목: Dancing Script 적용 (우아한 필기체) */
-        .cover-title { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 3.2rem; 
-            margin-bottom: 5px; 
-            font-weight: 600; 
-            letter-spacing: 1px;
-        }
-        
-        /* 이름: 깔끔한 프리텐다드 */
-        .cover-names { 
-            font-family: 'Pretendard', sans-serif;
-            font-size: 1.5rem; 
-            font-weight: 500;
-            margin-bottom: 15px; 
-            letter-spacing: 2px;
-        }
-        
-        /* 날짜 */
-        .cover-date { 
-            font-family: 'Pretendard', sans-serif;
-            font-size: 0.9rem; 
-            opacity: 0.9; 
-            letter-spacing: 1px;
-        }
+        .cover-title { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 5px; font-weight: 600; letter-spacing: 1px; }
+        .cover-names { font-family: 'Pretendard', sans-serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 15px; letter-spacing: 2px; }
+        .cover-date { font-family: 'Pretendard', sans-serif; font-size: 0.9rem; opacity: 0.9; letter-spacing: 1px; }
 
         /* 섹션 공통 */
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        
-        /* 소제목 스타일 */
-        .sec-title {
-            color: var(--main-color);
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            font-family: 'Pretendard', sans-serif;
-        }
+        .sec-title { color: var(--main-color); font-size: 1.1rem; font-weight: bold; margin-bottom: 25px; letter-spacing: 1px; font-family: 'Pretendard', sans-serif; }
 
-        /* 초대 문구 & 달력 스타일 */
+        /* 인사말, 달력 */
         .greeting { font-size: 0.95rem; color: var(--gray-text); line-height: 2.2; margin-bottom: 30px;}
         .highlight-name { font-weight: bold; color: #000; font-size: 1.1rem; }
-        
         .calendar-box { border: 1px solid #eee; padding: 20px; border-radius: 10px; margin: 20px 10px; }
         .calendar-title { font-size: 1.2rem; margin-bottom: 10px; font-weight: bold; font-family: 'Noto Serif KR', serif; }
-        .d-day { color: var(--main-color); font-weight: bold; margin-bottom: 20px; display: block;}
 
-        /* 갤러리 그리드 */
+        /* === [신규] 연락처 섹션 스타일 === */
+        .contact-photo-area { display: flex; gap: 15px; margin-bottom: 30px; }
+        .contact-photo-box { flex: 1; }
+        .contact-photo { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; background: #eee; margin-bottom: 10px; }
+        .contact-label { font-size: 0.9rem; color: #666; font-weight: bold; }
+
+        .contact-list { text-align: left; padding: 0 10px; }
+        .contact-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee; }
+        .contact-name { font-weight: bold; font-size: 1rem; }
+        .contact-role { font-size: 0.8rem; color: #999; margin-left: 5px; }
+        .contact-btns { display: flex; gap: 5px; }
+        .btn-call, .btn-sms { padding: 8px 12px; border-radius: 20px; font-size: 0.8rem; text-decoration: none; font-weight: bold; display: flex; align-items: center; }
+        .btn-call { background: #e8f5e9; color: #2e7d32; } /* 전화 버튼색 */
+        .btn-sms { background: #fff3e0; color: #e65100; } /* 문자 버튼색 */
+
+        /* 갤러리, 지도 */
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background-color: #eee; border-radius: 4px; cursor: pointer; }
-
-        /* 지도 버튼 */
         .map-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
         .btn { padding: 12px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; flex: 1; text-align: center; }
         .btn-naver { background-color: #03C75A; color: #fff; }
         .btn-kakao { background-color: #FEE500; color: #000; }
 
-        /* 계좌번호 스타일 */
+        /* 계좌번호 */
         .account-btn { width: 100%; padding: 15px; background-color: #f9f9f9; border: none; border-bottom: 1px solid #eee; text-align: left; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; font-family: 'Pretendard', sans-serif; }
         .account-info { display: none; padding: 20px; background-color: #fff; font-size: 0.9rem; color: #555; text-align: left; }
         .copy-btn { float: right; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; border: none; }
 
-        /* 푸터 (왼쪽 아래 고정) */
-        .footer {
-            position: absolute;
-            bottom: 20px; left: 20px;
-            font-size: 0.7rem; color: #cccccc;
-            font-family: 'Pretendard', sans-serif;
-            background: none; padding: 0; text-align: left;
-        }
-
-        /* BGM 버튼 */
+        /* 기타 요소 */
+        .footer { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: #cccccc; font-family: 'Pretendard', sans-serif; background: none; padding: 0; text-align: left; }
         .music-btn { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.9); border-radius: 50%; border: 1px solid #eee; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 999; font-size: 24px; }
         .music-on { animation: spin 3s linear infinite; color: var(--main-color); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        /* 라이트박스 (중앙 정렬 + 화살표) */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
         .lightbox-content { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
@@ -147,38 +114,37 @@
         .prev { left: 10px; border-radius: 0 3px 3px 0; }
         .next { right: 10px; border-radius: 3px 0 0 3px; }
         .arrow:hover { background-color: rgba(0,0,0,0.5); }
-/* 꽃잎 스타일 */
+        
+        /* === [개선됨] 꽃잎 날리기 스타일 (다양한 종류 + 흔들림) === */
         .petal {
-            position: fixed;
-            top: -10px;
-            width: 10px; height: 10px;
-            background: #ffd1dc; /* 벚꽃색 */
-            border-radius: 100% 0 100% 0; /* 꽃잎 모양 */
-            z-index: 9999; /* 제일 위에 */
-            pointer-events: none; /* 클릭 방해 안 함 */
-            animation: fall linear infinite;
+            position: fixed; top: -20px; z-index: 9999; pointer-events: none;
+            opacity: 0.8; will-change: transform;
         }
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        /* 꽃잎 종류 1 (기본 분홍) */
+        .petal.type1 { width: 10px; height: 10px; background: #ffd1dc; border-radius: 100% 0 100% 0; animation: fall-sway1 linear infinite; }
+        /* 꽃잎 종류 2 (연한 분홍, 동그람) */
+        .petal.type2 { width: 8px; height: 8px; background: #fff0f5; border-radius: 50%; animation: fall-sway2 linear infinite; }
+        /* 꽃잎 종류 3 (진한 분홍, 조금 큼) */
+        .petal.type3 { width: 12px; height: 12px; background: #ffb7c5; border-radius: 100% 50% 100% 50%; animation: fall-sway3 linear infinite; }
+
+        /* 흔들리며 떨어지는 애니메이션들 */
+        @keyframes fall-sway1 {
+            0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; }
+            100% { transform:translateY(105vh) rotate(360deg) translateX(20px); opacity:0; }
         }
-        /* 스크롤 애니메이션용 클래스 */
-        .fade-wrap {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
+        @keyframes fall-sway2 {
+            0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; }
+            100% { transform:translateY(105vh) rotate(-180deg) translateX(-15px); opacity:0; }
         }
-        .fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fall-sway3 {
+            0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; }
+            100% { transform:translateY(105vh) rotate(720deg) translateX(10px); opacity:0; }
         }
     </style>
 </head>
 <body>
 
-<audio id="bgmAudio" autoplay loop>
-    <source src="bgm.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgmAudio" autoplay loop><source src="bgm.mp3" type="audio/mpeg"></audio>
 <div id="musicBtn" class="music-btn" onclick="toggleMusic()">♬</div>
 
 <div class="container">
@@ -188,7 +154,7 @@
         <div class="cover-date">2026. 11. 15. SUN PM 12:00</div>
     </div>
 
-    <div class="section fade-wrap">
+    <div class="section">
         <div class="sec-title">INVITATION</div>
         <div class="greeting">
             서로의 이름을 부르는 것만으로도<br>
@@ -205,39 +171,72 @@
     </div>
 
     <div class="section">
-        <div class="sec-title">DATE & LOCATION</div>
-<div class="calendar-box fade-wrap"> <div class="calendar-title">2026. 11. 15.</div>
-            <div style="font-size:0.9rem; color:#666; margin-bottom:20px;">
-                토요일 오후 12시
+        <div class="sec-title">CONTACT</div>
+        
+        <div class="contact-photo-area">
+            <div class="contact-photo-box">
+                <img src="groom_family.jpg" class="contact-photo"> <div class="contact-label">신랑측</div>
             </div>
-            
-            <table style="width:100%; text-align:center; font-size:0.9rem; color:#444;">
-                <tr style="color:#aaa; font-size:0.8rem;">
-                    <th style="color:#ff7e7e;">SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th>
-                </tr>
-                <tr>
-                    <td style="color:#ff7e7e;">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
-                </tr>
-                <tr>
-                    <td style="color:#ff7e7e;">8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
-                </tr>
-                <tr>
-                    <td style="color:#ff7e7e;"><div style="background:var(--main-color); color:#fff; width:30px; height:30px; line-height:30px; border-radius:50%; margin:0 auto;">15</div></td>
-                    <td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
-                </tr>
-                <tr>
-                    <td style="color:#ff7e7e;">22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
-                </tr>
-                <tr>
-                    <td style="color:#ff7e7e;">29</td><td>30</td><td></td><td></td><td></td><td></td><td></td>
-                </tr>
-            </table>
-            
-            <div style="margin-top:20px; color:#666; font-size:0.9rem; line-height:1.8;">
-                광주광역시 글로리아웨딩홀<br>
-                <span style="color:var(--main-color); font-weight:bold;">3층 비스타홀</span>
+            <div class="contact-photo-box">
+                <img src="bride_family.jpg" class="contact-photo"> <div class="contact-label">신부측</div>
             </div>
         </div>
+
+        <div class="contact-list">
+            <div class="contact-row">
+                <div><span class="contact-name">서진성</span><span class="contact-role">신랑</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+            <div class="contact-row">
+                <div><span class="contact-name">서OO</span><span class="contact-role">신랑 아버지</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+            <div class="contact-row" style="border-bottom: 2px solid #eee;">
+                <div><span class="contact-name">김OO</span><span class="contact-role">신랑 어머니</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+            
+            <div class="contact-row" style="margin-top: 20px;">
+                <div><span class="contact-name">김성은</span><span class="contact-role">신부</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+            <div class="contact-row">
+                <div><span class="contact-name">김OO</span><span class="contact-role">신부 아버지</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+            <div class="contact-row">
+                <div><span class="contact-name">이OO</span><span class="contact-role">신부 어머니</span></div>
+                <div class="contact-btns">
+                    <a href="tel:01000000000" class="btn-call">📞 전화</a>
+                    <a href="sms:01000000000" class="btn-sms">📩 문자</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="sec-title">DATE & LOCATION</div>
+        <div class="calendar-box">
+            <div class="calendar-title">2026. 11. 15.</div>
+            <span class="d-day">일요일 오후 12시</span>
+            <div style="color:#666; font-size:0.9rem;">
+                광주광역시 글로리아웨딩홀<br>
+                3층 비스타홀
+            </div>
         </div>
     </div>
 
@@ -264,7 +263,6 @@
 
     <div class="section" style="background-color:#fafafa;">
         <div class="sec-title">ACCOUNT</div>
-        
         <button class="account-btn" onclick="toggleAcc('acc1')">
             신랑측 마음 전하실 곳 <span style="font-size:0.8rem;">▼</span>
         </button>
@@ -310,9 +308,7 @@
         </div>
     </div>
 
-    <div class="footer">
-        Created by Jin
-    </div>
+    <div class="footer">Created by Jin</div>
 
 </div> <div id="myLightbox" class="lightbox">
     <span class="close-lightbox" onclick="closePhoto()">&times;</span>
@@ -322,154 +318,68 @@
 </div>
 
 <script>
-    // 1. 계좌번호 토글 함수
+    // 1. 계좌번호 토글
     function toggleAcc(id) {
         var x = document.getElementById(id);
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
+        x.style.display = (x.style.display === "block") ? "none" : "block";
     }
 
-    // 2. 계좌번호 복사 함수
+    // 2. 복사
     function copyText(val) {
-        navigator.clipboard.writeText(val).then(function() {
-            alert("계좌번호가 복사되었습니다.");
-        });
+        navigator.clipboard.writeText(val).then(() => alert("복사되었습니다."));
     }
 
-    // 3. BGM 컨트롤 및 자동재생
+    // 3. BGM
     var bgm = document.getElementById("bgmAudio");
     var musicBtn = document.getElementById("musicBtn");
     var isPlaying = false;
-
     function toggleMusic() {
-        if (isPlaying) {
-            bgm.pause();
-            musicBtn.classList.remove("music-on");
-            isPlaying = false;
-        } else {
-            bgm.play();
-            musicBtn.classList.add("music-on");
-            isPlaying = true;
-        }
+        if (isPlaying) { bgm.pause(); musicBtn.classList.remove("music-on"); isPlaying = false; }
+        else { bgm.play(); musicBtn.classList.add("music-on"); isPlaying = true; }
     }
-
-    // 자동 재생 시도 (실패 시 첫 터치에 재생)
     window.onload = function() {
         var playPromise = bgm.play();
         if (playPromise !== undefined) {
-            playPromise.then(_ => {
-                musicBtn.classList.add("music-on");
-                isPlaying = true;
-            }).catch(error => {
-                document.body.addEventListener('click', firstTouchPlay, { once: true });
-                document.body.addEventListener('touchstart', firstTouchPlay, { once: true });
-            });
+            playPromise.then(() => { musicBtn.classList.add("music-on"); isPlaying = true; })
+            .catch(() => { document.body.addEventListener('click', firstTouchPlay, { once: true }); document.body.addEventListener('touchstart', firstTouchPlay, { once: true }); });
         }
     };
+    function firstTouchPlay() { if (!isPlaying) { bgm.play(); musicBtn.classList.add("music-on"); isPlaying = true; } }
 
-    function firstTouchPlay() {
-        if (!isPlaying) {
-            bgm.play();
-            musicBtn.classList.add("music-on");
-            isPlaying = true;
-        }
+    // 4. 만료
+    var today = new Date(); var expireDate = new Date("2026-12-01");
+    if (today > expireDate) { document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;background:#f5f5f5;color:#555;'><h2>만료되었습니다.</h2></div>"; }
+
+    // 5. 라이트박스
+    var lightbox = document.getElementById("myLightbox"); var lightboxImg = document.getElementById("img01"); var galleryImages = Array.from(document.querySelectorAll(".gallery-img")); var currentIndex = 0;
+    galleryImages.forEach((img, index) => { img.onclick = function() { lightbox.style.display = "flex"; lightboxImg.src = this.src; currentIndex = index; } });
+    function closePhoto() { lightbox.style.display = "none"; }
+    function changeImage(n) { currentIndex += n; if (currentIndex >= galleryImages.length) currentIndex = 0; else if (currentIndex < 0) currentIndex = galleryImages.length - 1; lightboxImg.src = galleryImages[currentIndex].src; }
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closePhoto(); });
+
+    // === [개선됨] 6. 꽃잎 날리기 효과 (종류 섞기 + 빈도 조절) ===
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        
+        // 3가지 종류 중 랜덤 선택 (type1, type2, type3)
+        const type = Math.floor(Math.random() * 3) + 1;
+        petal.classList.add('type' + type);
+        
+        // 위치 및 속도 랜덤
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = Math.random() * 5 + 8 + 's'; // 8~13초 (더 천천히)
+        
+        document.body.appendChild(petal);
+
+        // 메모리 관리를 위해 삭제
+        setTimeout(() => { petal.remove(); }, 13000);
     }
-
-    // 4. 날짜 만료 시 자동 삭제
-    var today = new Date();
-    var expireDate = new Date("2026-12-01"); 
-
-    if (today > expireDate) {
-        document.body.innerHTML = `
-            <div style="display:flex; justify-content:center; align-items:center; height:100vh; text-align:center; background:#f5f5f5;">
-                <div>
-                    <h2 style="color:#555;">청첩장 게시 기간이<br>만료되었습니다.</h2>
-                    <p style="color:#999; margin-top:10px;">축하해주신 모든 분들께 감사드립니다.</p>
-                </div>
-            </div>
-        `;
-    }
-
-    // 5. 갤러리 라이트박스 (화살표 포함)
-    var lightbox = document.getElementById("myLightbox");
-    var lightboxImg = document.getElementById("img01");
-    var galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
-    var currentIndex = 0;
-
-    galleryImages.forEach(function(img, index) {
-        img.onclick = function() {
-            lightbox.style.display = "flex";
-            lightboxImg.src = this.src;
-            currentIndex = index;
-        }
-        // === 6. 꽃잎 날리기 효과 (추가됨) ===
-            function createPetal() {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                
-                // 꽃잎 모양과 색상 랜덤 설정
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 3 + 5 + 's'; // 5~8초
-                petal.style.opacity = Math.random();
-                
-                document.body.appendChild(petal);
-        
-                // 8초 뒤에 꽃잎 삭제 (메모리 관리)
-                setTimeout(() => {
-                    petal.remove();
-                }, 8000);
-            }
-        
-            // 0.3초마다 꽃잎 생성
-            setInterval(createPetal, 300);
-                
-            });
-        
-            function closePhoto() {
-                lightbox.style.display = "none";
-            }
-        
-            function changeImage(n) {
-                currentIndex += n;
-                if (currentIndex >= galleryImages.length) {
-                    currentIndex = 0;
-                } else if (currentIndex < 0) {
-                    currentIndex = galleryImages.length - 1;
-                }
-                lightboxImg.src = galleryImages[currentIndex].src;
-            }
-// === 7. 스크롤 애니메이션 (Fade In) ===
-    const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1 // 10% 보이면 실행
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("fade-in");
-                observer.unobserve(entry.target); // 한 번만 실행
-            }
-        });
-    }, observerOptions);
-
-    // .fade-wrap 클래스가 붙은 모든 요소를 관찰
-    document.querySelectorAll('.fade-wrap').forEach(el => {
-        observer.observe(el);
-    });
     
-    // 배경 클릭 시 닫기
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closePhoto();
-        }
-    });
+    // 0.8초마다 생성 (빈도 줄임)
+    setInterval(createPetal, 800);
+
 </script>
 
 </body>
 </html>
-
