@@ -167,18 +167,17 @@
 
         /* 라이트박스 */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
-    .lightbox-content {
-        display: block;
-        width: 92vw;
-        height: 82vh;
-        max-width: 92vw;
-        max-height: 82vh;
-    
-        object-fit: cover;
-        object-position: center center;
-    
-        border-radius: 5px;
-        background: transparent;
+        .lightbox-content {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 92vw;
+            max-height: 84vh;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            background: transparent;
         }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
         .arrow { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -30px; color: white; font-weight: bold; font-size: 30px; transition: 0.3s; user-select: none; z-index: 1001; }
@@ -347,16 +346,9 @@
                 padding: 52px 4px 20px;
             }
 
-            .lightbox-content{
-        
-                width:94vw;
-                height:78vh;
-        
-                max-width:94vw;
-                max-height:78vh;
-        
-                object-fit:cover;
-                object-position:center center;
+            .lightbox-content {
+                max-width: 96vw;
+                max-height: 86vh;
             }
 
             .arrow {
@@ -368,8 +360,60 @@
             .next { right: 0; }
         }
 
-    </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=12070"></script>
+    
+        /* 방향별 고정 확대 크기 */
+        .lightbox-content {
+            object-fit: cover !important;
+            object-position: center center !important;
+            background: #111;
+        }
+
+        .lightbox-content.portrait {
+            width: min(68vw, 520px) !important;
+            height: min(82vh, 760px) !important;
+            max-width: 68vw !important;
+            max-height: 82vh !important;
+        }
+
+        .lightbox-content.landscape {
+            width: min(92vw, 900px) !important;
+            height: min(56vh, 520px) !important;
+            max-width: 92vw !important;
+            max-height: 56vh !important;
+        }
+
+        .lightbox-content.square {
+            width: min(78vw, 650px) !important;
+            height: min(78vw, 650px) !important;
+            max-width: 78vw !important;
+            max-height: 78vh !important;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-content.portrait {
+                width: 82vw !important;
+                height: 74vh !important;
+                max-width: 82vw !important;
+                max-height: 74vh !important;
+            }
+
+            .lightbox-content.landscape {
+                width: 96vw !important;
+                height: 56vw !important;
+                max-width: 96vw !important;
+                max-height: 54vh !important;
+            }
+
+            .lightbox-content.square {
+                width: 88vw !important;
+                height: 88vw !important;
+                max-width: 88vw !important;
+                max-height: 72vh !important;
+            }
+        }
+
+</style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=14009"></script>
 </head>
 <body>
 
@@ -646,11 +690,29 @@
 
     let currentIndex = 0;
 
+    function applyOrientationClass() {
+        lightboxImg.classList.remove("portrait", "landscape", "square");
+
+        if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) {
+            lightboxImg.classList.add("portrait");
+        } else if (lightboxImg.naturalWidth > lightboxImg.naturalHeight) {
+            lightboxImg.classList.add("landscape");
+        } else {
+            lightboxImg.classList.add("square");
+        }
+    }
+
     function openGallery(index) {
         currentIndex = index;
+        lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[index].src;
         lightboxImg.alt =
             galleryImages[index].alt || "확대된 갤러리 사진";
+
+        if (lightboxImg.complete) {
+            applyOrientationClass();
+        }
+
         lightbox.style.display = "flex";
         document.body.style.overflow = "hidden";
     }
@@ -665,9 +727,14 @@
             (currentIndex + direction + galleryImages.length)
             % galleryImages.length;
 
+        lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[currentIndex].src;
         lightboxImg.alt =
             galleryImages[currentIndex].alt || "확대된 갤러리 사진";
+
+        if (lightboxImg.complete) {
+            applyOrientationClass();
+        }
     }
 
     galleryImages.forEach((img, index) => {
