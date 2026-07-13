@@ -125,7 +125,7 @@
             gap: 8px;
             z-index: 999;
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 4px 12px 4px 4px;
+            padding: 4px;
             border-radius: 30px;
             border: 1px solid #eee;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -143,29 +143,7 @@
         }
         .music-on { animation: spin 3s linear infinite; color: var(--main-color); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
-        
-        /* 볼륨 슬라이더 디자인 */
-        .volume-slider {
-            width: 60px;
-            height: 4px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: #ddd;
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--main-color);
-            cursor: pointer;
-        }
-
-        /* 라이트박스 */
+/* 라이트박스 */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
         .lightbox-content {
             display: block;
@@ -412,8 +390,17 @@
             }
         }
 
+
+        /* 갤러리 확대 화면에서 추가 확대 방지 */
+        .lightbox-content {
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=14009"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=14718"></script>
 </head>
 <body>
 
@@ -422,7 +409,6 @@
 <!-- 컨트롤러 묶음 엘리먼트 -->
 <div class="music-container">
     <button id="musicBtn" class="music-btn" onclick="toggleMusic()">♬</button>
-    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.3" oninput="changeVolume(this.value)">
 </div>
 
 <div class="container">
@@ -633,13 +619,8 @@
     // 3. BGM 컨트롤 관련 스크립트 수정
     var bgm = document.getElementById("bgmAudio");
     var musicBtn = document.getElementById("musicBtn");
-    var volumeSlider = document.getElementById("volumeSlider");
     var isPlaying = false;
-
-    // 초기 볼륨 설정 (0.3 = 30% 크기)
-    bgm.volume = 0.3;
-
-    function toggleMusic() {
+function toggleMusic() {
         if (isPlaying) { 
             bgm.pause(); 
             musicBtn.classList.remove("music-on"); 
@@ -650,13 +631,7 @@
             isPlaying = true; 
         }
     }
-
-    // 슬라이더 조절 시 볼륨 변경 함수
-    function changeVolume(val) {
-        bgm.volume = val;
-    }
-
-    window.onload = function() {
+window.onload = function() {
         var playPromise = bgm.play();
         if (playPromise !== undefined) {
             playPromise.then(() => { 
@@ -787,6 +762,30 @@
         }
     }
     updateWeddingDday();
+
+
+    // 8. 갤러리 확대 화면에서 추가 확대 방지
+    ["gesturestart", "gesturechange", "gestureend"].forEach((eventName) => {
+        lightboxImg.addEventListener(eventName, (event) => {
+            event.preventDefault();
+        }, { passive: false });
+    });
+
+    lightboxImg.addEventListener("dblclick", (event) => {
+        event.preventDefault();
+    });
+
+    let lastTouchEnd = 0;
+    lightboxImg.addEventListener("touchend", (event) => {
+        const now = Date.now();
+
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+
+        lastTouchEnd = now;
+    }, { passive: false });
+
 </script>
 
 </body>
