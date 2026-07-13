@@ -167,7 +167,18 @@
 
         /* 라이트박스 */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
-        .lightbox-content { max-width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .lightbox-content {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 92vw;
+            max-height: 84vh;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            background: transparent;
+        }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
         .arrow { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -30px; color: white; font-weight: bold; font-size: 30px; transition: 0.3s; user-select: none; z-index: 1001; }
         .prev { left: 10px; border-radius: 0 3px 3px 0; }
@@ -305,8 +316,52 @@
             .contact-icon-btns a { width: 27px; height: 27px; font-size: 0.82rem; }
             .contact-person .contact-name { font-size: 0.8rem; }
         }
+    
+        
+
+    
+        
+
+    
+        /* 새 갤러리 확대 보기 */
+        .lightbox {
+            padding: 54px 12px 24px;
+        }
+
+        .lightbox-content {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 92vw;
+            max-height: 84vh;
+            object-fit: contain;
+            object-position: center center;
+            border-radius: 5px;
+            background: transparent;
+        }
+
+        /* 모바일 */
+        @media (max-width: 600px) {
+            .lightbox {
+                padding: 52px 4px 20px;
+            }
+
+            .lightbox-content {
+                max-width: 96vw;
+                max-height: 86vh;
+            }
+
+            .arrow {
+                padding: 16px;
+                font-size: 30px;
+            }
+
+            .prev { left: 0; }
+            .next { right: 0; }
+        }
+
     </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=10770"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=12070"></script>
 </head>
 <body>
 
@@ -574,46 +629,55 @@
     var today = new Date(); var expireDate = new Date("2026-12-01");
     if (today > expireDate) { document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;background:#f5f5f5;color:#555;'><h2>만료되었습니다.</h2></div>"; }
 
-    // 5. 라이트박스
-    var lightbox = document.getElementById("myLightbox");
-    var lightboxImg = document.getElementById("img01");
-    var galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
-    var currentIndex = 0;
+    // 5. 갤러리 확대 보기
+    const lightbox = document.getElementById("myLightbox");
+    const lightboxImg = document.getElementById("img01");
+    const galleryImages = Array.from(
+        document.querySelectorAll(".gallery-img")
+    );
 
-    function applyLightboxRatio() {
-        lightboxImg.classList.remove("portrait", "landscape", "square");
-        if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) {
-            lightboxImg.classList.add("portrait");
-        } else if (lightboxImg.naturalWidth > lightboxImg.naturalHeight) {
-            lightboxImg.classList.add("landscape");
-        } else {
-            lightboxImg.classList.add("square");
-        }
+    let currentIndex = 0;
+
+    function openGallery(index) {
+        currentIndex = index;
+        lightboxImg.src = galleryImages[index].src;
+        lightboxImg.alt =
+            galleryImages[index].alt || "확대된 갤러리 사진";
+        lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden";
     }
 
-    function showGalleryImage(index) {
-        currentIndex = index;
-        lightbox.style.display = "flex";
-        lightboxImg.onload = applyLightboxRatio;
+    function closePhoto() {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    function changeImage(direction) {
+        currentIndex =
+            (currentIndex + direction + galleryImages.length)
+            % galleryImages.length;
+
         lightboxImg.src = galleryImages[currentIndex].src;
-        if (lightboxImg.complete) { applyLightboxRatio(); }
+        lightboxImg.alt =
+            galleryImages[currentIndex].alt || "확대된 갤러리 사진";
     }
 
     galleryImages.forEach((img, index) => {
-        img.onclick = function() { showGalleryImage(index); };
+        img.addEventListener("click", () => openGallery(index));
     });
 
-    function closePhoto() { lightbox.style.display = "none"; }
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+            closePhoto();
+        }
+    });
 
-    function changeImage(n) {
-        currentIndex += n;
-        if (currentIndex >= galleryImages.length) { currentIndex = 0; } 
-        else if (currentIndex < 0) { currentIndex = galleryImages.length - 1; }
-        showGalleryImage(currentIndex);
-    }
+    document.addEventListener("keydown", (event) => {
+        if (lightbox.style.display !== "flex") return;
 
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closePhoto();
+        if (event.key === "Escape") closePhoto();
+        if (event.key === "ArrowLeft") changeImage(-1);
+        if (event.key === "ArrowRight") changeImage(1);
     });
 
     // 6. 꽃잎 날리기 효과
