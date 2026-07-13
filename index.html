@@ -265,32 +265,38 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .gallery-img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; display: block; border-radius: 4px; cursor: pointer; }
 
-        /* 확대 시 사진 방향별 동일 규격 */
+        /* 확대 시 방향별 고정 크기 + 중앙 기준 꽉 채우기 */
+        .lightbox-content {
+            display: block;
+            object-position: center center;
+            background: #111;
+        }
+
+        /* 세로 사진은 모두 같은 세로형 크기 */
         .lightbox-content.portrait {
             width: min(72vw, 540px);
             height: min(80vh, 760px);
             max-width: 72vw;
             max-height: 80vh;
-            object-fit: contain;
-            background: #111;
+            object-fit: cover;
         }
 
+        /* 가로 사진은 모두 같은 가로형 크기 */
         .lightbox-content.landscape {
             width: min(92vw, 900px);
-            height: min(62vh, 560px);
+            height: min(58vh, 540px);
             max-width: 92vw;
-            max-height: 62vh;
-            object-fit: contain;
-            background: #111;
+            max-height: 58vh;
+            object-fit: cover;
         }
 
+        /* 정사각형 사진 */
         .lightbox-content.square {
             width: min(82vw, 650px);
             height: min(82vw, 650px);
             max-width: 82vw;
             max-height: 78vh;
-            object-fit: contain;
-            background: #111;
+            object-fit: cover;
         }
 
         @media (max-width: 380px) {
@@ -300,7 +306,7 @@
             .contact-person .contact-name { font-size: 0.8rem; }
         }
     </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=9745"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=10770"></script>
 </head>
 <body>
 
@@ -354,15 +360,15 @@
     <div class="section">
         <div class="sec-title">GALLERY</div>
         <div class="gallery-grid">
-            <img src="photo1.jpg" class="gallery-img" alt="갤러리 사진 1">
-            <img src="photo2.jpg" class="gallery-img" alt="갤러리 사진 2">
-            <img src="photo3.jpg" class="gallery-img" alt="갤러리 사진 3">
-            <img src="photo4.jpg" class="gallery-img" alt="갤러리 사진 4">
-            <img src="photo5.jpg" class="gallery-img" alt="갤러리 사진 5">
-            <img src="photo6.jpg" class="gallery-img" alt="갤러리 사진 6">
-            <img src="photo7.jpg" class="gallery-img" alt="갤러리 사진 7">
-            <img src="photo8.jpg" class="gallery-img" alt="갤러리 사진 8">
-            <img src="photo9.jpg" class="gallery-img" alt="갤러리 사진 9">
+            <img src="photo1.jpg" class="gallery-img">
+            <img src="photo2.jpg" class="gallery-img">
+            <img src="photo3.jpg" class="gallery-img">
+            <img src="photo4.jpg" class="gallery-img">
+            <img src="photo5.jpg" class="gallery-img">
+            <img src="photo6.jpg" class="gallery-img">
+            <img src="photo7.jpg" class="gallery-img">
+            <img src="photo8.jpg" class="gallery-img">
+            <img src="photo9.jpg" class="gallery-img">
         </div>
     </div>
 
