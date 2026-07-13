@@ -60,9 +60,38 @@
             color: #fff;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
         }
-        .cover-title { font-family: 'Dancing Script', cursive; font-size: 3.2rem; margin-bottom: 5px; font-weight: 600; letter-spacing: 1px; }
-        .cover-names { font-family: 'Pretendard', sans-serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 15px; letter-spacing: 2px; }
-        .cover-date { font-family: 'Pretendard', sans-serif; font-size: 0.9rem; opacity: 0.9; letter-spacing: 1px; }
+        .cover-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .cover-names {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 1.5px;
+        }
+        .cover-date {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.08rem;
+            font-weight: 500;
+            opacity: 0.96;
+            letter-spacing: 0.3px;
+            line-height: 1.75;
+        }
+
+        .cover-place {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.02rem;
+            font-weight: 500;
+            line-height: 1.65;
+            letter-spacing: 0.2px;
+            margin-top: 2px;
+        }
+
 
         /* 섹션 공통 */
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
@@ -72,7 +101,13 @@
         .greeting { font-size: 0.95rem; color: var(--gray-text); line-height: 2.2; margin-bottom: 30px;}
         .highlight-name { font-weight: bold; color: #000; font-size: 1.1rem; }
         .calendar-box { border: 1px solid #eee; padding: 20px; border-radius: 10px; margin: 20px 10px; }
-        .calendar-title { font-size: 1.2rem; margin-bottom: 10px; font-weight: bold; font-family: 'Noto Serif KR', serif; }
+        .calendar-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.45rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
 
         /* 연락처 섹션 스타일 */
         .contact-photo-area { display: flex; gap: 15px; margin-bottom: 30px; }
@@ -399,8 +434,50 @@
             -webkit-touch-callout: none;
         }
 
+
+        .calendar-time,
+        .calendar-place,
+        .calendar-address {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .calendar-time {
+            font-size: 1.08rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .calendar-place {
+            font-size: 1.08rem;
+            font-weight: 600;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .calendar-address {
+            margin-top: 7px;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: #777;
+        }
+
+        .calendar-divider {
+            width: 48px;
+            height: 1px;
+            margin: 22px auto 4px;
+            background: #ead6d6;
+        }
+
+        @media (max-width: 600px) {
+            .cover-title { font-size: 2.35rem; }
+            .cover-names { font-size: 1.72rem; }
+            .cover-date { font-size: 1rem; }
+            .cover-place { font-size: 0.96rem; }
+            .calendar-title { font-size: 1.35rem; }
+        }
+
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=14718"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
 <body>
 
@@ -414,8 +491,9 @@
 <div class="container">
     <div class="cover">
         <div class="cover-title">Wedding Invitation</div>
-        <div class="cover-names">서진성 & 김성은</div>
-        <div class="cover-date">2026. 11. 15. SUN PM 12:00</div>
+        <div class="cover-names">서진성 · 김성은</div>
+        <div class="cover-date">2026년 11월 15일 일요일 낮 12:00</div>
+        <div class="cover-place">글로리아 웨딩홀 3층 비스타홀</div>
     </div>
 
     <div class="section">
@@ -438,14 +516,17 @@
         <div class="sec-title">DATE & LOCATION</div>
         <div class="calendar-box">
             <div class="calendar-title">2026. 11. 15.</div>
-            <span class="d-day">일요일 오후 12시</span><br>
+            <div class="calendar-time">일요일 오후 12시</div>
+
+            <div class="calendar-place">
+                글로리아 웨딩홀 3층 비스타홀
+
+            </div>
+
+            <div class="calendar-divider"></div>
+
             <div id="weddingDday" class="wedding-dday" aria-live="polite">
                 예식일까지 계산 중...
-            </div>
-            <div style="color:#666; font-size:0.9rem;">
-                광주광역시 글로리아웨딩홀<br>
-                전남광주 서구 상무대로 683<br>
-                3층 비스타홀
             </div>
         </div>
     </div>
