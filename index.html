@@ -815,8 +815,40 @@
             }
         }
 
+
+        /* =========================================================
+           갤러리 프레임 최종 보정
+           브라우저 바 유무와 관계없이 프레임 비율을 고정합니다.
+        ========================================================= */
+        .lightbox-content.portrait {
+            width: var(--portrait-frame-width, 82vw) !important;
+            height: var(--portrait-frame-height, 70vh) !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+        }
+
+        .lightbox-content.landscape {
+            width: var(--landscape-frame-width, 92vw) !important;
+            height: var(--landscape-frame-height, 52vw) !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: contain !important;
+            object-position: center center !important;
+        }
+
+        .lightbox-content.square {
+            width: var(--square-frame-size, 82vw) !important;
+            height: var(--square-frame-size, 82vw) !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+        }
+
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=4225"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=5132"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
 <body>
@@ -1120,10 +1152,66 @@ window.onload = function() {
         const top = viewport ? viewport.offsetTop : 0;
 
         const root = document.documentElement;
+
         root.style.setProperty("--vv-width", width + "px");
         root.style.setProperty("--vv-height", height + "px");
         root.style.setProperty("--vv-left", left + "px");
         root.style.setProperty("--vv-top", top + "px");
+
+        /*
+         * 세로 사진 프레임은 항상 3:4 비율입니다.
+         * 화면이 길어져도 프레임만 길어지지 않기 때문에
+         * object-fit: cover가 좌우를 자르는 현상이 생기지 않습니다.
+         * 원본이 일반적인 세로 사진이면 좌우는 유지되고 위아래만 잘립니다.
+         */
+        const sideGap = 20;
+        const verticalGap = 72;
+
+        const maxFrameWidth = Math.max(160, width - sideGap);
+        const maxFrameHeight = Math.max(220, height - verticalGap);
+
+        const portraitRatio = 3 / 4;
+        let portraitWidth = Math.min(
+            maxFrameWidth,
+            maxFrameHeight * portraitRatio,
+            520
+        );
+        let portraitHeight = portraitWidth / portraitRatio;
+
+        const landscapeRatio = 16 / 10;
+        let landscapeWidth = Math.min(
+            maxFrameWidth,
+            maxFrameHeight * landscapeRatio,
+            900
+        );
+        let landscapeHeight = landscapeWidth / landscapeRatio;
+
+        const squareSize = Math.min(
+            maxFrameWidth,
+            maxFrameHeight,
+            650
+        );
+
+        root.style.setProperty(
+            "--portrait-frame-width",
+            portraitWidth + "px"
+        );
+        root.style.setProperty(
+            "--portrait-frame-height",
+            portraitHeight + "px"
+        );
+        root.style.setProperty(
+            "--landscape-frame-width",
+            landscapeWidth + "px"
+        );
+        root.style.setProperty(
+            "--landscape-frame-height",
+            landscapeHeight + "px"
+        );
+        root.style.setProperty(
+            "--square-frame-size",
+            squareSize + "px"
+        );
     }
 
     updateGalleryViewport();
