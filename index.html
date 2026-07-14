@@ -937,8 +937,82 @@
             max-height: calc(var(--vv-height, 100dvh) - 150px) !important;
         }
 
+
+        /* =========================================================
+           확대 갤러리 화면 밀도 조정
+           - 큰 사진을 위쪽으로 배치
+           - 상단 빈 공간 축소
+           - 하단 썸네일 확대
+           - 전체 화면을 더 꽉 차게 사용
+        ========================================================= */
+        .lightbox {
+            align-items: flex-start !important;
+            justify-content: center !important;
+            padding:
+                calc(48px + env(safe-area-inset-top))
+                10px
+                calc(102px + env(safe-area-inset-bottom)) !important;
+        }
+
+        .lightbox-content.portrait,
+        .lightbox-content.landscape,
+        .lightbox-content.square {
+            margin-top: 6px !important;
+            max-height: calc(var(--vv-height, 100dvh) - 166px) !important;
+        }
+
+        .lightbox-thumb-strip {
+            gap: 9px !important;
+            padding: 10px 12px 12px !important;
+            min-height: 94px;
+        }
+
+        .lightbox-thumb {
+            flex: 0 0 82px !important;
+            width: 82px !important;
+            height: 72px !important;
+            padding: 3px !important;
+            border-radius: 8px !important;
+        }
+
+        .lightbox-thumb img {
+            border-radius: 5px !important;
+        }
+
+        .close-lightbox {
+            top: calc(8px + env(safe-area-inset-top)) !important;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox {
+                padding:
+                    calc(44px + env(safe-area-inset-top))
+                    8px
+                    calc(104px + env(safe-area-inset-bottom)) !important;
+            }
+
+            .lightbox-content.portrait,
+            .lightbox-content.landscape,
+            .lightbox-content.square {
+                margin-top: 2px !important;
+                max-height: calc(var(--vv-height, 100dvh) - 160px) !important;
+            }
+
+            .lightbox-thumb-strip {
+                gap: 8px !important;
+                padding: 9px 10px 11px !important;
+                min-height: 92px;
+            }
+
+            .lightbox-thumb {
+                flex-basis: 80px !important;
+                width: 80px !important;
+                height: 70px !important;
+            }
+        }
+
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=8123"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=8768"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
 <body>
