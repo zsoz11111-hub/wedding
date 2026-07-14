@@ -952,8 +952,128 @@
             }
         }
 
+
+        /* 메인 커버 글자 위치 및 가독성 보정 */
+        .cover {
+            height: 100svh;
+            min-height: 640px;
+            padding-bottom: clamp(105px, 13vh, 150px) !important;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .cover::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 48%;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.15) 42%,
+                rgba(0,0,0,0.48) 100%
+            );
+        }
+
+        .cover-title,
+        .cover-names,
+        .cover-date,
+        .cover-place {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-shadow:
+                0 1px 2px rgba(0,0,0,0.8),
+                0 3px 12px rgba(0,0,0,0.58);
+        }
+
+        @media (max-width: 600px) {
+            .cover {
+                min-height: 620px;
+                padding-bottom: clamp(96px, 12vh, 128px) !important;
+            }
+        }
+
+
+        /* 본문 갤러리: 원래 3×3 */
+        .gallery-showcase {
+            display: none !important;
+        }
+
+        .gallery-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        /* 확대 화면 하단 썸네일 */
+        .lightbox-thumb-strip {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: calc(6px + env(safe-area-inset-bottom));
+            z-index: 1002;
+            display: flex;
+            gap: 7px;
+            padding: 7px 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            background: rgba(0,0,0,0.62);
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-thumb-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .lightbox-thumb {
+            flex: 0 0 66px;
+            width: 66px;
+            height: 58px;
+            padding: 2px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .lightbox-thumb.active {
+            border-color: #efaaa8;
+        }
+
+        .lightbox-thumb img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        /* 썸네일 바 공간 확보 */
+        .lightbox-content.portrait,
+        .lightbox-content.landscape,
+        .lightbox-content.square {
+            max-height: calc(var(--vv-height, 100dvh) - 150px) !important;
+        }
+
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=7178"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=7658"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
 <body>
@@ -1010,53 +1130,16 @@
 
     <div class="section">
         <div class="sec-title">GALLERY</div>
-
-        <div class="gallery-showcase">
-            <button type="button" class="gallery-main-btn" id="galleryMainBtn" aria-label="현재 사진 크게 보기">
-                <img src="photo1.jpg" id="galleryMainImage" class="gallery-main-image" alt="웨딩 갤러리 메인 사진">
-            </button>
-
-            <div class="gallery-thumb-strip" id="galleryThumbStrip" aria-label="갤러리 사진 목록">
-                <button type="button" class="gallery-thumb active" data-index="0" aria-label="1번 사진 보기">
-                    <img src="photo1.jpg" alt="웨딩 사진 1">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="1" aria-label="2번 사진 보기">
-                    <img src="photo2.jpg" alt="웨딩 사진 2">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="2" aria-label="3번 사진 보기">
-                    <img src="photo3.jpg" alt="웨딩 사진 3">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="3" aria-label="4번 사진 보기">
-                    <img src="photo4.jpg" alt="웨딩 사진 4">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="4" aria-label="5번 사진 보기">
-                    <img src="photo5.jpg" alt="웨딩 사진 5">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="5" aria-label="6번 사진 보기">
-                    <img src="photo6.jpg" alt="웨딩 사진 6">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="6" aria-label="7번 사진 보기">
-                    <img src="photo7.jpg" alt="웨딩 사진 7">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="7" aria-label="8번 사진 보기">
-                    <img src="photo8.jpg" alt="웨딩 사진 8">
-                </button>
-                <button type="button" class="gallery-thumb" data-index="8" aria-label="9번 사진 보기">
-                    <img src="photo9.jpg" alt="웨딩 사진 9">
-                </button>
-            </div>
-        </div>
-
-        <div class="gallery-grid" aria-hidden="true">
-            <img src="photo1.jpg" class="gallery-img">
-            <img src="photo2.jpg" class="gallery-img">
-            <img src="photo3.jpg" class="gallery-img">
-            <img src="photo4.jpg" class="gallery-img">
-            <img src="photo5.jpg" class="gallery-img">
-            <img src="photo6.jpg" class="gallery-img">
-            <img src="photo7.jpg" class="gallery-img">
-            <img src="photo8.jpg" class="gallery-img">
-            <img src="photo9.jpg" class="gallery-img">
+        <div class="gallery-grid">
+            <img src="photo1.jpg" class="gallery-img" alt="웨딩 사진 1">
+            <img src="photo2.jpg" class="gallery-img" alt="웨딩 사진 2">
+            <img src="photo3.jpg" class="gallery-img" alt="웨딩 사진 3">
+            <img src="photo4.jpg" class="gallery-img" alt="웨딩 사진 4">
+            <img src="photo5.jpg" class="gallery-img" alt="웨딩 사진 5">
+            <img src="photo6.jpg" class="gallery-img" alt="웨딩 사진 6">
+            <img src="photo7.jpg" class="gallery-img" alt="웨딩 사진 7">
+            <img src="photo8.jpg" class="gallery-img" alt="웨딩 사진 8">
+            <img src="photo9.jpg" class="gallery-img" alt="웨딩 사진 9">
         </div>
     </div>
 
@@ -1197,6 +1280,36 @@
     <a class="arrow prev" onclick="changeImage(-1)">&#10094;</a>
     <a class="arrow next" onclick="changeImage(1)">&#10095;</a>
     <img class="lightbox-content" id="img01">
+
+    <div class="lightbox-thumb-strip" id="lightboxThumbStrip">
+        <button type="button" class="lightbox-thumb active" data-index="0" aria-label="1번 사진 보기">
+            <img src="photo1.jpg" alt="웨딩 사진 1">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="1" aria-label="2번 사진 보기">
+            <img src="photo2.jpg" alt="웨딩 사진 2">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="2" aria-label="3번 사진 보기">
+            <img src="photo3.jpg" alt="웨딩 사진 3">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="3" aria-label="4번 사진 보기">
+            <img src="photo4.jpg" alt="웨딩 사진 4">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="4" aria-label="5번 사진 보기">
+            <img src="photo5.jpg" alt="웨딩 사진 5">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="5" aria-label="6번 사진 보기">
+            <img src="photo6.jpg" alt="웨딩 사진 6">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="6" aria-label="7번 사진 보기">
+            <img src="photo7.jpg" alt="웨딩 사진 7">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="7" aria-label="8번 사진 보기">
+            <img src="photo8.jpg" alt="웨딩 사진 8">
+        </button>
+        <button type="button" class="lightbox-thumb" data-index="8" aria-label="9번 사진 보기">
+            <img src="photo9.jpg" alt="웨딩 사진 9">
+        </button>
+    </div>
 </div>
 
 <script>
@@ -1376,47 +1489,7 @@ window.onload = function() {
 
     let currentIndex = 0;
 
-    const galleryMainImage = document.getElementById("galleryMainImage");
-    const galleryMainBtn = document.getElementById("galleryMainBtn");
-    const galleryThumbs = Array.from(
-        document.querySelectorAll(".gallery-thumb")
-    );
 
-    let galleryAutoTimer = null;
-    const GALLERY_AUTO_DELAY = 4500;
-
-    function setGalleryMain(index, restartAuto = true) {
-        if (!galleryMainImage || !galleryImages[index]) return;
-
-        currentIndex = index;
-
-        galleryMainImage.classList.add("is-fading");
-
-        setTimeout(() => {
-            galleryMainImage.src = galleryImages[index].src;
-            galleryMainImage.alt =
-                galleryImages[index].alt || "웨딩 갤러리 사진";
-
-            galleryThumbs.forEach((thumb, thumbIndex) => {
-                thumb.classList.toggle("active", thumbIndex === index);
-            });
-
-            const activeThumb = galleryThumbs[index];
-            if (activeThumb) {
-                activeThumb.scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest",
-                    inline: "center"
-                });
-            }
-
-            requestAnimationFrame(() => {
-                galleryMainImage.classList.remove("is-fading");
-            });
-        }, 180);
-
-        if (restartAuto) {
-            startGalleryAuto();
         }
     }
 
@@ -1481,9 +1554,12 @@ window.onload = function() {
 
         lightbox.style.display = "flex";
         document.body.style.overflow = "hidden";
+        updateLightboxThumbs();
+        startLightboxAutoSlide();
     }
 
     function closePhoto() {
+        stopLightboxAutoSlide();
         lightbox.style.display = "none";
         document.body.style.overflow = "";
     }
@@ -1493,7 +1569,6 @@ window.onload = function() {
             (currentIndex + direction + galleryImages.length)
             % galleryImages.length;
 
-        setGalleryMain(currentIndex, true);
 
         lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[currentIndex].src;
@@ -1503,6 +1578,9 @@ window.onload = function() {
         if (lightboxImg.complete) {
             applyOrientationClass();
         }
+
+        updateLightboxThumbs();
+        startLightboxAutoSlide();
     }
 
     lightboxImg.addEventListener("click", (event) => {
@@ -1512,6 +1590,67 @@ window.onload = function() {
     document.querySelectorAll(".lightbox .arrow, .close-lightbox").forEach((control) => {
         control.addEventListener("click", (event) => {
             event.stopPropagation();
+        });
+    });
+
+
+    const lightboxThumbs = Array.from(
+        document.querySelectorAll(".lightbox-thumb")
+    );
+
+    let lightboxAutoTimer = null;
+    const LIGHTBOX_AUTO_DELAY = 4500;
+
+    function updateLightboxThumbs() {
+        lightboxThumbs.forEach((thumb, index) => {
+            thumb.classList.toggle("active", index === currentIndex);
+        });
+
+        const activeThumb = lightboxThumbs[currentIndex];
+        if (activeThumb) {
+            activeThumb.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center"
+            });
+        }
+    }
+
+    function startLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
+
+        lightboxAutoTimer = setInterval(() => {
+            if (lightbox.style.display === "flex") {
+                changeImage(1);
+            }
+        }, LIGHTBOX_AUTO_DELAY);
+    }
+
+    function stopLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
+        lightboxAutoTimer = null;
+    }
+
+    galleryImages.forEach((img, index) => {
+        img.addEventListener("click", () => openGallery(index));
+    });
+
+    lightboxThumbs.forEach((thumb) => {
+        thumb.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            currentIndex = Number(thumb.dataset.index);
+            lightboxImg.onload = applyOrientationClass;
+            lightboxImg.src = galleryImages[currentIndex].src;
+            lightboxImg.alt =
+                galleryImages[currentIndex].alt || "확대된 갤러리 사진";
+
+            if (lightboxImg.complete) {
+                applyOrientationClass();
+            }
+
+            updateLightboxThumbs();
+            startLightboxAutoSlide();
         });
     });
 
