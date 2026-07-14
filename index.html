@@ -497,6 +497,201 @@
             .calendar-title { font-size: 2.35rem; }
         }
 
+
+        /* =========================================================
+           모바일 브라우저 상단·하단 바 대응
+           주소창/하단바가 나타나거나 사라져도 사진 전체가 보이도록 처리
+        ========================================================= */
+        .lightbox {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: var(--visible-vh, 100dvh) !important;
+            min-height: 0 !important;
+            padding:
+                calc(54px + env(safe-area-inset-top))
+                42px
+                calc(20px + env(safe-area-inset-bottom)) !important;
+            display: none;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+        }
+
+        .lightbox-content,
+        .lightbox-content.portrait,
+        .lightbox-content.landscape,
+        .lightbox-content.square {
+            display: block !important;
+            width: auto !important;
+            height: auto !important;
+            max-width: calc(100vw - 84px) !important;
+            max-height: calc(
+                var(--visible-vh, 100dvh)
+                - 74px
+                - env(safe-area-inset-top)
+                - env(safe-area-inset-bottom)
+            ) !important;
+            object-fit: contain !important;
+            object-position: center center !important;
+            background: transparent !important;
+        }
+
+        .close-lightbox {
+            top: calc(12px + env(safe-area-inset-top)) !important;
+            right: 18px !important;
+        }
+
+        .arrow {
+            top: 50% !important;
+            transform: translateY(-50%);
+            margin-top: 0 !important;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox {
+                padding:
+                    calc(50px + env(safe-area-inset-top))
+                    36px
+                    calc(16px + env(safe-area-inset-bottom)) !important;
+            }
+
+            .lightbox-content,
+            .lightbox-content.portrait,
+            .lightbox-content.landscape,
+            .lightbox-content.square {
+                max-width: calc(100vw - 72px) !important;
+                max-height: calc(
+                    var(--visible-vh, 100dvh)
+                    - 66px
+                    - env(safe-area-inset-top)
+                    - env(safe-area-inset-bottom)
+                ) !important;
+            }
+        }
+
+
+        /* =========================================================
+           갤러리 확대 크기 최종 규칙
+           - 세로 사진: 모두 동일한 프레임 크기
+           - 가로 사진: 모두 동일한 프레임 크기
+           - 정사각형 사진: 모두 동일한 프레임 크기
+           - 브라우저 바가 보여도 전체 사진 유지
+        ========================================================= */
+
+        .lightbox-content {
+            object-fit: contain !important;
+            object-position: center center !important;
+            touch-action: none !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        /* 세로 사진 공통 크기 */
+        .lightbox-content.portrait {
+            width: min(82vw, 520px) !important;
+            height: min(
+                74vh,
+                calc(var(--visible-vh, 100dvh) - 86px)
+            ) !important;
+            max-width: min(82vw, 520px) !important;
+            max-height: calc(var(--visible-vh, 100dvh) - 86px) !important;
+            object-fit: contain !important;
+            background: #111 !important;
+        }
+
+        /* 가로 사진 공통 크기 */
+        .lightbox-content.landscape {
+            width: min(92vw, 900px) !important;
+            height: min(
+                56vw,
+                calc(var(--visible-vh, 100dvh) - 110px)
+            ) !important;
+            max-width: min(92vw, 900px) !important;
+            max-height: calc(var(--visible-vh, 100dvh) - 110px) !important;
+            object-fit: contain !important;
+            background: #111 !important;
+        }
+
+        /* 정사각형 사진 공통 크기 */
+        .lightbox-content.square {
+            width: min(82vw, 650px) !important;
+            height: min(
+                82vw,
+                calc(var(--visible-vh, 100dvh) - 100px)
+            ) !important;
+            max-width: min(82vw, 650px) !important;
+            max-height: calc(var(--visible-vh, 100dvh) - 100px) !important;
+            object-fit: contain !important;
+            background: #111 !important;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-content.portrait {
+                width: 82vw !important;
+                height: calc(var(--visible-vh, 100dvh) - 82px) !important;
+                max-width: 82vw !important;
+                max-height: calc(var(--visible-vh, 100dvh) - 82px) !important;
+            }
+
+            .lightbox-content.landscape {
+                width: 90vw !important;
+                height: min(
+                    56vw,
+                    calc(var(--visible-vh, 100dvh) - 100px)
+                ) !important;
+                max-width: 90vw !important;
+                max-height: calc(var(--visible-vh, 100dvh) - 100px) !important;
+            }
+
+            .lightbox-content.square {
+                width: 82vw !important;
+                height: min(
+                    82vw,
+                    calc(var(--visible-vh, 100dvh) - 94px)
+                ) !important;
+                max-width: 82vw !important;
+                max-height: calc(var(--visible-vh, 100dvh) - 94px) !important;
+            }
+        }
+
+
+        /* =========================================================
+           세로 사진 최종 표시 규칙
+           - 모든 세로 사진은 동일한 세로형 프레임
+           - 사진 중심을 기준으로 위·아래만 잘라서 꽉 채움
+           - 좌우 비율은 유지
+           - 브라우저 바가 나타나도 프레임 크기 자동 조정
+        ========================================================= */
+        .lightbox-content.portrait {
+            width: min(82vw, 520px) !important;
+            height: min(
+                72vh,
+                calc(var(--visible-vh, 100dvh) - 86px)
+            ) !important;
+            max-width: min(82vw, 520px) !important;
+            max-height: calc(var(--visible-vh, 100dvh) - 86px) !important;
+
+            object-fit: cover !important;
+            object-position: center center !important;
+
+            background: #111 !important;
+            border-radius: 6px !important;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-content.portrait {
+                width: 82vw !important;
+                height: calc(var(--visible-vh, 100dvh) - 82px) !important;
+                max-width: 82vw !important;
+                max-height: calc(var(--visible-vh, 100dvh) - 82px) !important;
+
+                object-fit: cover !important;
+                object-position: center center !important;
+            }
+        }
+
 </style>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
@@ -758,6 +953,37 @@ window.onload = function() {
     var today = new Date(); var expireDate = new Date("2026-12-01");
     if (today > expireDate) { document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;background:#f5f5f5;color:#555;'><h2>만료되었습니다.</h2></div>"; }
 
+
+    // 모바일 브라우저 주소창·하단바를 제외한 실제 보이는 높이 계산
+    function updateVisibleViewportHeight() {
+        const visibleHeight = window.visualViewport
+            ? window.visualViewport.height
+            : window.innerHeight;
+
+        document.documentElement.style.setProperty(
+            "--visible-vh",
+            visibleHeight + "px"
+        );
+    }
+
+    updateVisibleViewportHeight();
+
+    window.addEventListener("resize", updateVisibleViewportHeight);
+    window.addEventListener("orientationchange", () => {
+        setTimeout(updateVisibleViewportHeight, 150);
+    });
+
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener(
+            "resize",
+            updateVisibleViewportHeight
+        );
+        window.visualViewport.addEventListener(
+            "scroll",
+            updateVisibleViewportHeight
+        );
+    }
+
     // 5. 갤러리 확대 보기
     const lightbox = document.getElementById("myLightbox");
     const lightboxImg = document.getElementById("img01");
@@ -780,6 +1006,7 @@ window.onload = function() {
     }
 
     function openGallery(index) {
+        updateVisibleViewportHeight();
         currentIndex = index;
         lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[index].src;
@@ -891,4 +1118,4 @@ window.onload = function() {
 </script>
 
 </body>
-</html>
+    </html>
