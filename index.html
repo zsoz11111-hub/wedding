@@ -57,8 +57,8 @@
             width: 100%;
             height: 100vh;
             background-image: url('main.jpg');
-            background-size: contain;
-            background-position: center center;
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -66,9 +66,7 @@
             text-align: center;
             color: #fff;
             text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
-        
-            background-repeat: no-repeat;
-            background-color: #ffffff;}
+        }
         .cover-title {
             display: block;
             width: calc(100% - 32px);
@@ -851,175 +849,42 @@
 
 
         /* =========================================================
-           메인 갤러리 쇼케이스
-           - 메인 사진은 전체가 보이도록 contain
-           - 아래 9개 썸네일 가로 스크롤
-           - 현재 썸네일은 분홍색 테두리
+           메인 커버 최종 위치
+           - 사진 좌우 전체 표시
+           - 그라데이션 없음
+           - 제목·이름·날짜·장소를 사진 안쪽으로 올림
         ========================================================= */
-        .gallery-showcase {
-            width: 100%;
-        }
-
-        .gallery-main-btn {
-            display: block;
-            width: 100%;
-            padding: 0;
-            border: 0;
-            border-radius: 10px;
-            background: #f7f7f7;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-
-        .gallery-main-image {
-            display: block;
-            width: 100%;
-            height: min(112vw, 590px);
-            object-fit: contain;
-            object-position: center center;
-            background: #fff;
-            opacity: 1;
-            transition: opacity 0.45s ease;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .gallery-main-image.is-fading {
-            opacity: 0.22;
-        }
-
-        .gallery-thumb-strip {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-            padding: 2px 1px 8px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .gallery-thumb-strip::-webkit-scrollbar {
-            display: none;
-        }
-
-        .gallery-thumb {
-            flex: 0 0 78px;
-            width: 78px;
-            height: 78px;
-            padding: 3px;
-            border: 2px solid transparent;
-            border-radius: 9px;
-            background: #fff;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .gallery-thumb.active {
-            border-color: #e8a9a7;
-            transform: translateY(-1px);
-        }
-
-        .gallery-thumb img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        /* 기존 3×3 목록은 라이트박스 데이터용으로만 유지 */
-        .gallery-grid {
-            display: none !important;
-        }
-
-        @media (max-width: 600px) {
-            .gallery-main-image {
-                height: 118vw;
-                max-height: 590px;
-            }
-
-            .gallery-thumb {
-                flex-basis: 70px;
-                width: 70px;
-                height: 70px;
-            }
-        }
-
-
-        /* 메인 커버 글자 위치 및 가독성 보정 */
         .cover {
-            height: 100svh;
-            min-height: 640px;
-            padding-bottom: clamp(105px, 13vh, 150px) !important;
-            overflow: hidden;
-            isolation: isolate;
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            background-color: #fff !important;
+            justify-content: flex-end !important;
+            padding-bottom: clamp(185px, 23vh, 245px) !important;
         }
 
-        .cover::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 48%;
-            z-index: 0;
-            pointer-events: none;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0) 0%,
-                rgba(0,0,0,0.15) 42%,
-                rgba(0,0,0,0.48) 100%
-            );
+        .cover-title {
+            margin-bottom: 18px !important;
         }
 
-        .cover-title,
-        .cover-names,
-        .cover-date,
+        .cover-names {
+            margin-bottom: 17px !important;
+        }
+
+        .cover-date {
+            line-height: 1.55 !important;
+        }
+
         .cover-place {
-            position: relative;
-            z-index: 1;
-            color: #fff;
-            text-shadow:
-                0 1px 2px rgba(0,0,0,0.8),
-                0 3px 12px rgba(0,0,0,0.58);
+            margin-top: 2px !important;
         }
 
         @media (max-width: 600px) {
             .cover {
-                min-height: 620px;
-                padding-bottom: clamp(96px, 12vh, 128px) !important;
+                padding-bottom: clamp(165px, 21vh, 215px) !important;
             }
         }
 
-
-        /* 본문 갤러리: 원래 3×3 */
-        .gallery-showcase {
-            display: none !important;
-        }
-
-        .gallery-grid {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-        }
-
-        .gallery-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            border-radius: 4px;
-            cursor: pointer;
-            pointer-events: auto;
-        }
 
         /* 확대 화면 하단 썸네일 */
         .lightbox-thumb-strip {
@@ -1034,7 +899,7 @@
             overflow-x: auto;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
-            background: rgba(0,0,0,0.62);
+            background: rgba(0, 0, 0, 0.62);
             backdrop-filter: blur(5px);
         }
 
@@ -1073,7 +938,7 @@
         }
 
 </style>
-<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=7658"></script>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=8123"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
 <body>
@@ -1131,15 +996,15 @@
     <div class="section">
         <div class="sec-title">GALLERY</div>
         <div class="gallery-grid">
-            <img src="photo1.jpg" class="gallery-img" alt="웨딩 사진 1">
-            <img src="photo2.jpg" class="gallery-img" alt="웨딩 사진 2">
-            <img src="photo3.jpg" class="gallery-img" alt="웨딩 사진 3">
-            <img src="photo4.jpg" class="gallery-img" alt="웨딩 사진 4">
-            <img src="photo5.jpg" class="gallery-img" alt="웨딩 사진 5">
-            <img src="photo6.jpg" class="gallery-img" alt="웨딩 사진 6">
-            <img src="photo7.jpg" class="gallery-img" alt="웨딩 사진 7">
-            <img src="photo8.jpg" class="gallery-img" alt="웨딩 사진 8">
-            <img src="photo9.jpg" class="gallery-img" alt="웨딩 사진 9">
+            <img src="photo1.jpg" class="gallery-img">
+            <img src="photo2.jpg" class="gallery-img">
+            <img src="photo3.jpg" class="gallery-img">
+            <img src="photo4.jpg" class="gallery-img">
+            <img src="photo5.jpg" class="gallery-img">
+            <img src="photo6.jpg" class="gallery-img">
+            <img src="photo7.jpg" class="gallery-img">
+            <img src="photo8.jpg" class="gallery-img">
+            <img src="photo9.jpg" class="gallery-img">
         </div>
     </div>
 
@@ -1489,43 +1354,43 @@ window.onload = function() {
 
     let currentIndex = 0;
 
+    const lightboxThumbs = Array.from(
+        document.querySelectorAll(".lightbox-thumb")
+    );
 
+    let lightboxAutoTimer = null;
+    const LIGHTBOX_AUTO_DELAY = 4500;
+
+    function updateLightboxThumbs() {
+        lightboxThumbs.forEach((thumb, index) => {
+            thumb.classList.toggle("active", index === currentIndex);
+        });
+
+        const activeThumb = lightboxThumbs[currentIndex];
+        if (activeThumb) {
+            activeThumb.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center"
+            });
         }
     }
 
-    function startGalleryAuto() {
-        clearInterval(galleryAutoTimer);
+    function startLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
 
-        galleryAutoTimer = setInterval(() => {
-            const nextIndex =
-                (currentIndex + 1) % galleryImages.length;
-
-            setGalleryMain(nextIndex, false);
-        }, GALLERY_AUTO_DELAY);
+        lightboxAutoTimer = setInterval(() => {
+            if (lightbox.style.display === "flex") {
+                changeImage(1, false);
+            }
+        }, LIGHTBOX_AUTO_DELAY);
     }
 
-    galleryThumbs.forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-            const index = Number(thumb.dataset.index);
-            setGalleryMain(index);
-        });
-    });
-
-    if (galleryMainBtn) {
-        galleryMainBtn.addEventListener("click", () => {
-            openGallery(currentIndex);
-        });
+    function stopLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
+        lightboxAutoTimer = null;
     }
 
-    document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-            clearInterval(galleryAutoTimer);
-        } else {
-            startGalleryAuto();
-        }
-    });
-
-    startGalleryAuto();
 
     function applyOrientationClass() {
         lightboxImg.classList.remove("portrait", "landscape", "square");
@@ -1564,11 +1429,10 @@ window.onload = function() {
         document.body.style.overflow = "";
     }
 
-    function changeImage(direction) {
+    function changeImage(direction, restartAuto = true) {
         currentIndex =
             (currentIndex + direction + galleryImages.length)
             % galleryImages.length;
-
 
         lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[currentIndex].src;
@@ -1580,8 +1444,15 @@ window.onload = function() {
         }
 
         updateLightboxThumbs();
-        startLightboxAutoSlide();
+
+        if (restartAuto) {
+            startLightboxAutoSlide();
+        }
     }
+
+    galleryImages.forEach((img, index) => {
+        img.addEventListener("click", () => openGallery(index));
+    });
 
     lightboxImg.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -1593,47 +1464,6 @@ window.onload = function() {
         });
     });
 
-
-    const lightboxThumbs = Array.from(
-        document.querySelectorAll(".lightbox-thumb")
-    );
-
-    let lightboxAutoTimer = null;
-    const LIGHTBOX_AUTO_DELAY = 4500;
-
-    function updateLightboxThumbs() {
-        lightboxThumbs.forEach((thumb, index) => {
-            thumb.classList.toggle("active", index === currentIndex);
-        });
-
-        const activeThumb = lightboxThumbs[currentIndex];
-        if (activeThumb) {
-            activeThumb.scrollIntoView({
-                behavior: "smooth",
-                block: "nearest",
-                inline: "center"
-            });
-        }
-    }
-
-    function startLightboxAutoSlide() {
-        clearInterval(lightboxAutoTimer);
-
-        lightboxAutoTimer = setInterval(() => {
-            if (lightbox.style.display === "flex") {
-                changeImage(1);
-            }
-        }, LIGHTBOX_AUTO_DELAY);
-    }
-
-    function stopLightboxAutoSlide() {
-        clearInterval(lightboxAutoTimer);
-        lightboxAutoTimer = null;
-    }
-
-    galleryImages.forEach((img, index) => {
-        img.addEventListener("click", () => openGallery(index));
-    });
 
     lightboxThumbs.forEach((thumb) => {
         thumb.addEventListener("click", (event) => {
