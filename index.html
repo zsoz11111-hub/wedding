@@ -127,6 +127,52 @@
             color: #d99692;
         }
 
+
+        /* 혼주 소개 */
+        .family-card {
+            max-width: 390px;
+            margin: 0 auto;
+            padding: 25px 22px;
+            border: 1px solid #eee;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.035);
+        }
+        .family-row {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 0;
+        }
+        .family-row + .family-row {
+            border-top: 1px solid #eee;
+        }
+        .family-side {
+            font-family: 'Pretendard', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #d99692;
+            letter-spacing: 0.6px;
+        }
+        .family-text {
+            text-align: left;
+            line-height: 1.8;
+            color: #555;
+            font-size: 0.93rem;
+        }
+        .family-text strong {
+            display: inline-block;
+            margin-left: 5px;
+            color: #111;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+        .family-parent {
+            color: #777;
+            letter-spacing: -0.2px;
+        }
+
         /* 연락처 섹션 스타일 */
         .contact-photo-area { display: flex; gap: 15px; margin-bottom: 30px; }
         .contact-photo-box { flex: 1; }
@@ -1012,6 +1058,7 @@
         }
 
 </style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=10186"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=8768"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
 </head>
@@ -1045,6 +1092,27 @@
         <div>
             <span class="highlight-name">서진성</span> · <span class="highlight-name">김성은</span>
             <span style="font-size:0.9rem; color:#888;">의 결혼식</span>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <div class="sec-title">FAMILY</div>
+        <div class="family-card">
+            <div class="family-row">
+                <div class="family-side">GROOM</div>
+                <div class="family-text">
+                    <div class="family-parent">서경남 · 김미례의 아들</div>
+                    <div><strong>서진성</strong></div>
+                </div>
+            </div>
+            <div class="family-row">
+                <div class="family-side">BRIDE</div>
+                <div class="family-text">
+                    <div class="family-parent">김민기 · 이미현의 딸</div>
+                    <div><strong>김성은</strong></div>
+                </div>
+            </div>
         </div>
     </div>
 
