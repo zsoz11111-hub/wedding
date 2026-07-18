@@ -33,8 +33,7 @@
             background-position: center center; 
             background-color: #dfdfdf; 
             display: flex; flex-direction: column; justify-content: flex-end;
-            padding-bottom: clamp(120px, 15vh, 200px);
-            text-align: center; color: #fff; text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+            padding-bottom: 80px; text-align: center; color: #fff; text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
         }
         .cover-title { display: block; width: calc(100% - 32px); max-width: 460px; margin: 0 auto 24px; padding: 0 4px; font-family: 'Great Vibes', cursive; font-size: clamp(2.15rem, 8.8vw, 2.85rem); font-weight: 400; text-align: center; }
         .cover-names { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 600; margin-bottom: 24px; }
@@ -43,37 +42,39 @@
 
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
         .sec-title { color: var(--main-color); font-size: 1.1rem; font-weight: bold; margin-bottom: 25px; font-family: 'Pretendard', sans-serif; }
-
-        /* 혼주 정보 - 중앙 정렬 */
+        .greeting { font-size: 0.95rem; color: var(--gray-text); line-height: 2.2; margin-bottom: 30px;}
+        .highlight-name { font-weight: bold; color: #000; font-size: 1.1rem; }
+        
+        /* 혼주 소개 - 중앙 정렬 적용 */
         .family-card { max-width: 390px; margin: 0 auto; padding: 25px 22px; border: 1px solid #eee; border-radius: 14px; background: #fff; }
         .family-row { display: flex; justify-content: center; align-items: center; width: 100%; padding: 18px 0; }
         .family-row + .family-row { border-top: 1px solid #eee; }
-        .family-side { flex: 0 0 70px; font-size: 0.85rem; font-weight: 700; color: #d99692; text-align: center; margin-right: 15px; }
-        .family-text { flex: 0 0 170px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.93rem; }
+        .family-side { flex: 0 0 70px; font-family: 'Pretendard', sans-serif; font-size: 0.85rem; font-weight: 700; color: #d99692; text-align: center; margin-right: 15px; }
+        .family-text { flex: 0 0 170px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.93rem; color: #555; }
         .family-text strong { color: #111; font-size: 1.12rem; font-weight: 700; margin-top: 2px; }
         .family-parent { color: #777; font-size: 0.85rem; }
 
-        /* 갤러리/기타 스타일 */
+        /* 갤러리 그리드 */
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; cursor: pointer; }
 
+        /* 라이트박스 */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100dvh; background-color: #050505; flex-direction: column; justify-content: space-between; align-items: center; }
-        .close-lightbox { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 40px; cursor: pointer; z-index: 1005; }
-        .arrow { cursor: pointer; position: absolute; top: 42%; transform: translateY(-50%); color: white; font-size: 35px; padding: 15px; z-index: 1005; }
+        .close-lightbox { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1005; }
+        .arrow { cursor: pointer; position: absolute; top: 45%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 35px; padding: 15px; z-index: 1005; }
         .prev { left: 5px; } .next { right: 5px; }
         
-        .lightbox-content { flex: 1; display: flex; align-items: center; justify-content: center; width: 100vw; height: calc(100dvh - 150px); object-fit: contain; }
-        .lightbox-content.portrait { width: 100vw !important; aspect-ratio: 3 / 4 !important; height: auto !important; max-height: calc(100dvh - 160px) !important; object-fit: cover !important; }
-
+        .lightbox-content { flex: 1; display: flex; align-items: center; justify-content: center; width: 100vw; height: calc(100dvh - 150px); object-fit: contain; margin: auto; }
+        .lightbox-content.portrait { width: 100vw !important; aspect-ratio: 3 / 4 !important; height: auto !important; max-height: calc(100dvh - 160px) !important; object-fit: cover !important; object-position: center center !important; }
+        
         .lightbox-thumb-strip { width: 100%; min-height: 150px; background: #111; display: flex; align-items: center; gap: 12px; padding: 15px 10px; overflow-x: auto; border-top: 1px solid #222; }
-        .lightbox-thumb { flex: 0 0 115px; width: 115px; height: 115px; border: 3px solid transparent; border-radius: 12px; cursor: pointer; }
+        .lightbox-thumb { flex: 0 0 115px; width: 115px; height: 115px; border: 3px solid transparent; border-radius: 12px; cursor: pointer; background: transparent; }
         .lightbox-thumb.active { border-color: #f7cac9; }
         .lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
     </style>
 </head>
 <body>
 
-<!-- 상단 컨텐츠 생략 (기존 구조 동일) -->
 <div class="container">
     <div class="cover">
         <div class="cover-title">Wedding Invitation</div>
@@ -81,8 +82,9 @@
         <div class="cover-date">2026년 11월 15일 일요일 낮 12:00</div>
         <div class="cover-place">글로리아 웨딩홀 3층 비스타홀</div>
     </div>
-    <!-- 섹션들... -->
-    <div class="section"><div class="sec-title">FAMILY</div>
+
+    <div class="section">
+        <div class="sec-title">FAMILY</div>
         <div class="family-card">
             <div class="family-row">
                 <div class="family-side">GROOM</div>
@@ -100,7 +102,21 @@
             </div>
         </div>
     </div>
-    <!-- 나머지 섹션 생략 -->
+
+    <div class="section">
+        <div class="sec-title">GALLERY</div>
+        <div class="gallery-grid">
+            <img src="photo1.jpg" class="gallery-img">
+            <img src="photo2.jpg" class="gallery-img">
+            <img src="photo3.jpg" class="gallery-img">
+            <img src="photo4.jpg" class="gallery-img">
+            <img src="photo5.jpg" class="gallery-img">
+            <img src="photo6.jpg" class="gallery-img">
+            <img src="photo7.jpg" class="gallery-img">
+            <img src="photo8.jpg" class="gallery-img">
+            <img src="photo9.jpg" class="gallery-img">
+        </div>
+    </div>
 </div>
 
 <div id="myLightbox" class="lightbox">
@@ -110,19 +126,47 @@
     <a class="arrow next" onclick="changeImage(1)">&#10095;</a>
     <div class="lightbox-thumb-strip">
         <button type="button" class="lightbox-thumb active" data-index="0"><img src="photo1.jpg"></button>
-        <!-- 나머지 버튼들 -->
+        <button type="button" class="lightbox-thumb" data-index="1"><img src="photo2.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="2"><img src="photo3.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="3"><img src="photo4.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="4"><img src="photo5.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="5"><img src="photo6.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="6"><img src="photo7.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="7"><img src="photo8.jpg"></button>
+        <button type="button" class="lightbox-thumb" data-index="8"><img src="photo9.jpg"></button>
     </div>
 </div>
 
 <script>
-    // 기존 스크립트 그대로 유지하되 아래 로직 확인
+    const lightbox = document.getElementById("myLightbox");
+    const lightboxImg = document.getElementById("img01");
+    const galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
+    let currentIndex = 0;
+
     function applyOrientationClass() {
         lightboxImg.classList.remove("portrait", "landscape", "square");
         if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) lightboxImg.classList.add("portrait");
         else if (lightboxImg.naturalWidth > lightboxImg.naturalHeight) lightboxImg.classList.add("landscape");
         else lightboxImg.classList.add("square");
     }
-    // 나머지 갤러리 로직 동일
+
+    function openGallery(index) {
+        currentIndex = index;
+        lightboxImg.onload = applyOrientationClass;
+        lightboxImg.src = galleryImages[index].src;
+        if (lightboxImg.complete) applyOrientationClass();
+        lightbox.style.display = "flex";
+    }
+
+    function closePhoto() { lightbox.style.display = "none"; }
+
+    function changeImage(direction) {
+        currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentIndex].src;
+        applyOrientationClass();
+    }
+
+    galleryImages.forEach((img, index) => img.addEventListener("click", () => openGallery(index)));
 </script>
 </body>
 </html>
