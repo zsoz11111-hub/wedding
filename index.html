@@ -18,62 +18,274 @@
             font-weight: normal; font-style: normal; font-display: swap;
         }
 
-        :root { --main-color: #f7cac9; --bg-color: #ffffff; --text-color: #333333; --gray-text: #666666; }
-        * { box-sizing: border-box; }
-        body { margin: 0; padding: 0; font-family: 'GyeonggiBatang', serif; background-color: #f5f5f5; color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
-
-        .container { max-width: 500px; margin: 0 auto; background-color: var(--bg-color); min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); position: relative; padding-bottom: 60px; }
-
-        /* 메인 커버: 사진 잘림 방지 (contain) */
-        .cover {
-            position: relative; width: 100%; height: 100vh;
-            background-image: url('main.jpg');
-            background-size: contain; 
-            background-repeat: no-repeat;
-            background-position: center center; 
-            background-color: #dfdfdf; 
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding-bottom: 80px; text-align: center; color: #fff; text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        :root {
+            --main-color: #f7cac9; 
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --gray-text: #666666;
         }
-        .cover-title { display: block; width: calc(100% - 32px); max-width: 460px; margin: 0 auto 24px; padding: 0 4px; font-family: 'Great Vibes', cursive; font-size: clamp(2.15rem, 8.8vw, 2.85rem); font-weight: 400; text-align: center; }
-        .cover-names { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 600; margin-bottom: 24px; }
-        .cover-date { font-family: 'Noto Serif KR', serif; font-size: 1.08rem; }
-        .cover-place { font-family: 'Noto Serif KR', serif; font-size: 1.02rem; margin-top: 2px; }
+        
+        * { box-sizing: border-box; }
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'GyeonggiBatang', serif;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; 
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            position: relative; 
+            padding-bottom: 60px; 
+        }
+
+        /* 메인 커버 */
+        .cover {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('main.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 80px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+        .cover-title {
+            display: block; width: calc(100% - 32px); max-width: 460px;
+            margin: 0 auto 24px; padding: 0 4px;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.15rem, 8.8vw, 2.85rem);
+            font-weight: 400; letter-spacing: 0; line-height: 1.15;
+            white-space: nowrap; overflow: hidden;
+            text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.38);
+        }
+        .cover-names {
+            font-family: 'Noto Serif KR', serif; font-size: 2rem;
+            font-weight: 600; margin-bottom: 24px; letter-spacing: 1.5px;
+        }
+        .cover-date {
+            font-family: 'Noto Serif KR', serif; font-size: 1.08rem;
+            font-weight: 500; opacity: 0.96; letter-spacing: 0.3px; line-height: 1.75;
+        }
+        .cover-place {
+            font-family: 'Noto Serif KR', serif; font-size: 1.02rem;
+            font-weight: 500; line-height: 1.65; letter-spacing: 0.2px; margin-top: 2px;
+        }
 
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        .sec-title { color: var(--main-color); font-size: 1.1rem; font-weight: bold; margin-bottom: 25px; font-family: 'Pretendard', sans-serif; }
+        .sec-title { color: var(--main-color); font-size: 1.1rem; font-weight: bold; margin-bottom: 25px; letter-spacing: 1px; font-family: 'Pretendard', sans-serif; }
+
         .greeting { font-size: 0.95rem; color: var(--gray-text); line-height: 2.2; margin-bottom: 30px;}
         .highlight-name { font-weight: bold; color: #000; font-size: 1.1rem; }
         
-        /* 혼주 소개 - 중앙 정렬 적용 */
-        .family-card { max-width: 390px; margin: 0 auto; padding: 25px 22px; border: 1px solid #eee; border-radius: 14px; background: #fff; }
-        .family-row { display: flex; justify-content: center; align-items: center; width: 100%; padding: 18px 0; }
+        .calendar-box { border: 1px solid #eee; padding: 20px; border-radius: 10px; margin: 20px 10px; }
+        .calendar-title { font-family: 'Noto Serif KR', serif; font-size: 2.65rem; margin-bottom: 2px; font-weight: 700; letter-spacing: 1px; line-height: 1.2; color: #d99692; }
+        .calendar-time { font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 400; margin-bottom: 30px; color: #d99692; letter-spacing: -0.2px; }
+        .calendar-place { font-family: 'Noto Serif KR', serif; font-size: 1.35rem; font-weight: 600; line-height: 1.65; color: #111; letter-spacing: -0.5px; }
+        .calendar-divider { width: 48px; height: 1px; margin: 22px auto 4px; background: #ead6d6; }
+
+        /* 혼주 소개 - 이름 정중앙 정렬 적용 */
+        .family-card {
+            max-width: 390px; margin: 0 auto; padding: 25px 22px;
+            border: 1px solid #eee; border-radius: 14px; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.035);
+        }
+        .family-row {
+            display: flex; justify-content: center; align-items: center; width: 100%; padding: 18px 0;
+        }
         .family-row + .family-row { border-top: 1px solid #eee; }
-        .family-side { flex: 0 0 70px; font-family: 'Pretendard', sans-serif; font-size: 0.85rem; font-weight: 700; color: #d99692; text-align: center; margin-right: 15px; }
-        .family-text { flex: 0 0 170px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.93rem; color: #555; }
-        .family-text strong { color: #111; font-size: 1.12rem; font-weight: 700; margin-top: 2px; }
-        .family-parent { color: #777; font-size: 0.85rem; }
+        
+        .family-side {
+            flex: 0 0 70px; font-family: 'Pretendard', sans-serif;
+            font-size: 0.85rem; font-weight: 700; color: #d99692;
+            text-align: center; margin-right: 15px;
+        }
+        .family-text {
+            flex: 0 0 170px; 
+            text-align: center; /* 텍스트 중앙 정렬 */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; /* 가로 중앙 정렬 추가 */
+            line-height: 1.8; 
+            color: #555; 
+            font-size: 0.93rem;
+        }
+        .family-text strong { 
+            color: #111; 
+            font-size: 1.12rem; /* 이름 글자 크기 약간 강조 */
+            font-weight: 700; 
+            margin-left: 0; 
+            margin-top: 2px; /* 부모님 성함과의 간격 */
+        }
+        .family-parent { color: #777; letter-spacing: -0.2px; font-size: 0.85rem; }
+
+        /* 연락처 및 기타 */
+        .contact-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+        .contact-side { overflow: hidden; border: 1px solid #eee; border-radius: 14px; background: #fff; }
+        .contact-side-title { padding: 10px 6px; background: #8f9aa5; color: #fff; font-size: 0.78rem; font-weight: 700; letter-spacing: -0.3px; }
+        .contact-mini-row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; padding: 10px 9px; border-bottom: 1px solid #eee; }
+        .contact-mini-row:last-child { border-bottom: none; }
+        .contact-person { min-width: 0; text-align: left; line-height: 1.25; }
+        .contact-person .contact-name { display: block; font-size: 0.88rem; white-space: nowrap; }
+        .contact-person .contact-role { display: block; margin: 3px 0 0; font-size: 0.7rem; color: #999; white-space: nowrap; }
+        .contact-icon-btns { display: flex; gap: 5px; margin-left: 5px; }
+        .contact-icon-btns a { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid #ddd; border-radius: 50%; color: #777; text-decoration: none; font-size: 0.92rem; background: #fff; }
+        
+        .map-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+        .btn { padding: 12px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; flex: 1; text-align: center; }
+        .btn-naver { background-color: #03C75A; color: #fff; }
+        .btn-kakao { background-color: #FEE500; color: #000; }
+
+        .account-btn { width: 100%; padding: 15px; background-color: #f9f9f9; border: none; border-bottom: 1px solid #eee; text-align: left; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; font-family: 'Pretendard', sans-serif; }
+        .account-info { display: none; padding: 20px; background-color: #fff; font-size: 0.9rem; color: #555; text-align: left; }
+        .copy-btn { float: right; background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; border: none; }
+
+        .wedding-dday { display: inline-flex; align-items: center; justify-content: center; min-width: 190px; margin: 16px auto 18px; padding: 11px 20px; border: 1px solid rgba(247, 202, 201, 0.8); border-radius: 999px; background: linear-gradient(135deg, #fff8f8, #fdeaea); color: #9b6262; font-size: 0.92rem; font-weight: 700; box-shadow: 0 4px 12px rgba(247, 202, 201, 0.25); }
+
+        .music-container { position: fixed; top: 20px; right: 20px; display: flex; align-items: center; gap: 8px; z-index: 999; background-color: rgba(255, 255, 255, 0.9); padding: 4px; border-radius: 30px; border: 1px solid #eee; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .music-btn { width: 40px; height: 40px; background: none; border: none; display: flex; justify-content: center; align-items: center; cursor: pointer; font-size: 20px; }
+        .music-on { animation: spin 3s linear infinite; color: var(--main-color); }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .footer { position: absolute; bottom: 20px; left: 20px; font-size: 0.7rem; color: #cccccc; font-family: 'Pretendard', sans-serif; background: none; padding: 0; text-align: left; }
 
         /* 갤러리 그리드 */
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
-        .gallery-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; cursor: pointer; }
+        .gallery-img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; display: block; border-radius: 4px; cursor: pointer; }
 
-        /* 라이트박스 */
-        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100dvh; background-color: #050505; flex-direction: column; justify-content: space-between; align-items: center; }
-        .close-lightbox { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1005; }
-        .arrow { cursor: pointer; position: absolute; top: 45%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 35px; padding: 15px; z-index: 1005; }
-        .prev { left: 5px; } .next { right: 5px; }
+        /* =======================================================
+           갤러리 확대 화면 (완전 새단장 및 위아래 일괄 크롭 적용)
+           ======================================================= */
+        .lightbox { 
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0; 
+            width: 100vw; height: 100dvh; 
+            background-color: #050505; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
         
-        .lightbox-content { flex: 1; display: flex; align-items: center; justify-content: center; width: 100vw; height: calc(100dvh - 150px); object-fit: contain; margin: auto; }
-        .lightbox-content.portrait { width: 100vw !important; aspect-ratio: 3 / 4 !important; height: auto !important; max-height: calc(100dvh - 160px) !important; object-fit: cover !important; object-position: center center !important; }
+        .close-lightbox { 
+            position: absolute; 
+            top: calc(15px + env(safe-area-inset-top, 0px)); 
+            right: 20px; 
+            color: #fff; 
+            font-size: 40px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            z-index: 1005; 
+        }
         
-        .lightbox-thumb-strip { width: 100%; min-height: 150px; background: #111; display: flex; align-items: center; gap: 12px; padding: 15px 10px; overflow-x: auto; border-top: 1px solid #222; }
-        .lightbox-thumb { flex: 0 0 115px; width: 115px; height: 115px; border: 3px solid transparent; border-radius: 12px; cursor: pointer; background: transparent; }
+        .arrow { 
+            cursor: pointer; 
+            position: absolute; 
+            top: 45%; 
+            transform: translateY(-50%);
+            color: white; 
+            font-weight: bold; 
+            font-size: 35px; 
+            padding: 15px;
+            user-select: none; 
+            z-index: 1005; 
+        }
+        .prev { left: 5px; }
+        .next { right: 5px; }
+
+        /* 갤러리 메인 사진 - 기본 설정 (가로, 정방형) */
+        .lightbox-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: calc(100dvh - 150px);
+            object-fit: contain;
+            margin: auto;
+            touch-action: none;
+        }
+
+        /* 세로 사진 일괄 꽉채우기 및 위아래 크롭 */
+        .lightbox-content.portrait {
+            width: 100vw !important;
+            max-width: 500px !important;
+            aspect-ratio: 3 / 4 !important; 
+            height: auto !important; 
+            max-height: calc(100dvh - 160px) !important;
+            object-fit: cover !important; 
+            object-position: center center !important; 
+        }
+        
+        /* 가로/정방형 사진은 안 잘리게 유지 */
+        .lightbox-content.landscape,
+        .lightbox-content.square {
+            width: 100vw !important;
+            height: calc(100dvh - 160px) !important;
+            object-fit: contain !important;
+        }
+
+        /* 하단 썸네일 스트립 */
+        .lightbox-thumb-strip {
+            width: 100%;
+            min-height: 150px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 10px calc(15px + env(safe-area-inset-bottom, 0px));
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            box-sizing: border-box;
+            border-top: 1px solid #222;
+        }
+        .lightbox-thumb-strip::-webkit-scrollbar { display: none; }
+
+        .lightbox-thumb {
+            flex: 0 0 115px;
+            width: 115px;
+            height: 115px;
+            padding: 0;
+            border: 3px solid transparent;
+            border-radius: 12px;
+            background: transparent;
+            cursor: pointer;
+        }
         .lightbox-thumb.active { border-color: #f7cac9; }
-        .lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
+        .lightbox-thumb img {
+            display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 9px;
+        }
+
+        /* 꽃잎 날리기 스타일 */
+        .petal { position: fixed; top: -20px; z-index: 9999; pointer-events: none; opacity: 0.8; will-change: transform; }
+        .petal.type1 { width: 10px; height: 10px; background: #ffd1dc; border-radius: 100% 0 100% 0; animation: fall-sway1 linear infinite; }
+        .petal.type2 { width: 8px; height: 8px; background: #fff0f5; border-radius: 50%; animation: fall-sway2 linear infinite; }
+        .petal.type3 { width: 12px; height: 12px; background: #ffb7c5; border-radius: 100% 50% 100% 50%; animation: fall-sway3 linear infinite; }
+        @keyframes fall-sway1 { 0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; } 100% { transform:translateY(105vh) rotate(360deg) translateX(20px); opacity:0; } }
+        @keyframes fall-sway2 { 0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; } 100% { transform:translateY(105vh) rotate(-180deg) translateX(-15px); opacity:0; } }
+        @keyframes fall-sway3 { 0% { transform:translateY(0) rotate(0deg) translateX(0); opacity:1; } 100% { transform:translateY(105vh) rotate(720deg) translateX(10px); opacity:0; } }
     </style>
 </head>
 <body>
+
+<audio id="bgmAudio" autoplay loop><source src="bgm.mp3" type="audio/mpeg"></audio>
+
+<div class="music-container">
+    <button id="musicBtn" class="music-btn" onclick="toggleMusic()">♬</button>
+</div>
 
 <div class="container">
     <div class="cover">
@@ -81,6 +293,22 @@
         <div class="cover-names">서진성 · 김성은</div>
         <div class="cover-date">2026년 11월 15일 일요일 낮 12:00</div>
         <div class="cover-place">글로리아 웨딩홀 3층 비스타홀</div>
+    </div>
+
+    <div class="section">
+        <div class="sec-title">INVITATION</div>
+        <div class="greeting">
+            서로의 이름을 부르는 것만으로도<br>
+            사랑의 깊이를 알 수 있는 두 사람이<br>
+            꽃과 나무처럼 어우러져<br>
+            아름다운 가정을 이루려 합니다.<br><br>
+            저희의 첫걸음을 함께하시어<br>
+            축복해 주시면 감사하겠습니다.
+        </div>
+        <div>
+            <span class="highlight-name">서진성</span> · <span class="highlight-name">김성은</span>
+            <span style="font-size:0.9rem; color:#888;">의 결혼식</span>
+        </div>
     </div>
 
     <div class="section">
@@ -104,6 +332,21 @@
     </div>
 
     <div class="section">
+        <div class="sec-title">DATE & LOCATION</div>
+        <div class="calendar-box">
+            <div class="calendar-title">11. 15.</div>
+            <div class="calendar-time">일요일 오후 12시</div>
+            <div class="calendar-place">
+                글로리아 웨딩홀 <br> 3층 비스타홀
+            </div>
+            <div class="calendar-divider"></div>
+            <div id="weddingDday" class="wedding-dday" aria-live="polite">
+                예식일까지 계산 중...
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
         <div class="sec-title">GALLERY</div>
         <div class="gallery-grid">
             <img src="photo1.jpg" class="gallery-img">
@@ -117,37 +360,223 @@
             <img src="photo9.jpg" class="gallery-img">
         </div>
     </div>
-</div>
 
+    <div class="section">
+        <div class="sec-title">LOCATION</div>
+        <img src="map.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
+        <div class="map-buttons">
+            <a href="https://naver.me/GUwSjbeY" class="btn btn-naver" target="_blank">네이버 지도</a>
+            <a href="https://kko.to/L-Hwc-TRAj" class="btn btn-kakao" target="_blank">카카오맵</a>
+        </div>
+    </div>
+
+    <div class="section" style="background-color:#fafafa;">
+        <div class="sec-title">ACCOUNT</div>
+        <button class="account-btn" onclick="toggleAcc('acc1')">
+            신랑측 마음 전하실 곳 <span style="font-size:0.8rem;">▼</span>
+        </button>
+        <div id="acc1" class="account-info">
+            <div style="margin-bottom: 15px;">
+                <strong>신랑 서진성</strong>
+                <button class="copy-btn" onclick="copyText('98830004868')">복사</button>
+                <div style="margin-top:5px; color:#888;">국민은행 98830004868</div>
+            </div>
+            <hr style="border: 0; border-top: 1px dashed #eee; margin: 10px 0;">
+            <div style="margin-bottom: 15px;">
+                <strong>신랑 아버지 서경남</strong>
+                <button class="copy-btn" onclick="copyText('302-0815-1234-8')">복사</button>
+                <div style="margin-top:5px; color:#888;">농협 302-0815-1234-81</div>
+            </div>
+            <div>
+                <strong>신랑 어머니 김미례</strong>
+                <button class="copy-btn" onclick="copyText('3333-09-6334806')">복사</button>
+                <div style="margin-top:5px; color:#888;">카카오뱅크 3333-09-6334806</div>
+            </div>
+        </div>
+
+        <button class="account-btn" onclick="toggleAcc('acc2')">
+            신부측 마음 전하실 곳 <span style="font-size:0.8rem;">▼</span>
+        </button>
+        <div id="acc2" class="account-info">
+            <div style="margin-bottom: 15px;">
+                <strong>신부 김성은</strong>
+                <button class="copy-btn" onclick="copyText('740502-00-174520')">복사</button>
+                <div style="margin-top:5px; color:#888;">국민은행 740502-00-174520</div>
+            </div>
+            <hr style="border: 0; border-top: 1px dashed #eee; margin: 10px 0;">
+            <div style="margin-bottom: 15px;">
+                <strong>신부 아버지 김민기</strong>
+                <button class="copy-btn" onclick="copyText('153-121-203747')">복사</button>
+                <div style="margin-top:5px; color:#888;">광주은행 153-121-203747</div>
+            </div>
+            <div>
+                <strong>신부 어머니 이미현</strong>
+                <button class="copy-btn" onclick="copyText('001-121-973701')">복사</button>
+                <div style="margin-top:5px; color:#888;">광주은행 001-121-973701</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="sec-title">CONTACT</div>
+        <div class="contact-dual">
+            <div class="contact-side">
+                <div class="contact-side-title">신랑측 연락하기</div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">서진성</span><span class="contact-role">신랑</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01088300048">☎</a><a href="sms:01088300048">✉</a>
+                    </div>
+                </div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">서경남</span><span class="contact-role">아버지</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01042305534">☎</a><a href="sms:01042305534">✉</a>
+                    </div>
+                </div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">김미례</span><span class="contact-role">어머니</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01054650148">☎</a><a href="sms:01054650148">✉</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-side">
+                <div class="contact-side-title">신부측 연락하기</div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">김성은</span><span class="contact-role">신부</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01094564527">☎</a><a href="sms:01094564527">✉</a>
+                    </div>
+                </div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">김민기</span><span class="contact-role">아버지</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01064507799">☎</a><a href="sms:01064507799">✉</a>
+                    </div>
+                </div>
+                <div class="contact-mini-row">
+                    <div class="contact-person">
+                        <span class="contact-name">이미현</span><span class="contact-role">어머니</span>
+                    </div>
+                    <div class="contact-icon-btns">
+                        <a href="tel:01026024561">☎</a><a href="sms:01026024561">✉</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">Created by Jin</div>
+</div> 
+
+<!-- 숨겨져 있다가 갤러리 클릭 시 나타나는 라이트박스 화면 -->
 <div id="myLightbox" class="lightbox">
     <span class="close-lightbox" onclick="closePhoto()">&times;</span>
     <a class="arrow prev" onclick="changeImage(-1)">&#10094;</a>
     <img class="lightbox-content" id="img01">
     <a class="arrow next" onclick="changeImage(1)">&#10095;</a>
-    <div class="lightbox-thumb-strip">
-        <button type="button" class="lightbox-thumb active" data-index="0"><img src="photo1.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="1"><img src="photo2.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="2"><img src="photo3.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="3"><img src="photo4.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="4"><img src="photo5.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="5"><img src="photo6.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="6"><img src="photo7.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="7"><img src="photo8.jpg"></button>
-        <button type="button" class="lightbox-thumb" data-index="8"><img src="photo9.jpg"></button>
+
+    <div class="lightbox-thumb-strip" id="lightboxThumbStrip">
+        <button type="button" class="lightbox-thumb active" data-index="0"><img src="photo1.jpg" alt="1"></button>
+        <button type="button" class="lightbox-thumb" data-index="1"><img src="photo2.jpg" alt="2"></button>
+        <button type="button" class="lightbox-thumb" data-index="2"><img src="photo3.jpg" alt="3"></button>
+        <button type="button" class="lightbox-thumb" data-index="3"><img src="photo4.jpg" alt="4"></button>
+        <button type="button" class="lightbox-thumb" data-index="4"><img src="photo5.jpg" alt="5"></button>
+        <button type="button" class="lightbox-thumb" data-index="5"><img src="photo6.jpg" alt="6"></button>
+        <button type="button" class="lightbox-thumb" data-index="6"><img src="photo7.jpg" alt="7"></button>
+        <button type="button" class="lightbox-thumb" data-index="7"><img src="photo8.jpg" alt="8"></button>
+        <button type="button" class="lightbox-thumb" data-index="8"><img src="photo9.jpg" alt="9"></button>
     </div>
 </div>
 
 <script>
+    // 1. 계좌번호 토글
+    function toggleAcc(id) {
+        var x = document.getElementById(id);
+        x.style.display = (x.style.display === "block") ? "none" : "block";
+    }
+
+    // 2. 복사
+    function copyText(val) {
+        navigator.clipboard.writeText(val).then(() => alert("복사되었습니다."));
+    }
+
+    // 3. BGM 컨트롤
+    var bgm = document.getElementById("bgmAudio");
+    var musicBtn = document.getElementById("musicBtn");
+    var isPlaying = false;
+    function toggleMusic() {
+        if (isPlaying) { 
+            bgm.pause(); musicBtn.classList.remove("music-on"); isPlaying = false; 
+        } else { 
+            bgm.play(); musicBtn.classList.add("music-on"); isPlaying = true; 
+        }
+    }
+    window.onload = function() {
+        var playPromise = bgm.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => { musicBtn.classList.add("music-on"); isPlaying = true; })
+            .catch(() => { 
+                document.body.addEventListener('click', firstTouchPlay, { once: true }); 
+                document.body.addEventListener('touchstart', firstTouchPlay, { once: true }); 
+            });
+        }
+    };
+    function firstTouchPlay() { 
+        if (!isPlaying) { bgm.play(); musicBtn.classList.add("music-on"); isPlaying = true; } 
+    }
+
+    // 4. 갤러리 작동 스크립트 
     const lightbox = document.getElementById("myLightbox");
     const lightboxImg = document.getElementById("img01");
     const galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
     let currentIndex = 0;
+    const lightboxThumbs = Array.from(document.querySelectorAll(".lightbox-thumb"));
+    let lightboxAutoTimer = null;
+    const LIGHTBOX_AUTO_DELAY = 4500;
 
+    // 사진의 비율을 감지하여 클래스 부여 (세로사진 꽉차게 자르기 위해 필수)
     function applyOrientationClass() {
         lightboxImg.classList.remove("portrait", "landscape", "square");
-        if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) lightboxImg.classList.add("portrait");
-        else if (lightboxImg.naturalWidth > lightboxImg.naturalHeight) lightboxImg.classList.add("landscape");
-        else lightboxImg.classList.add("square");
+        if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) {
+            lightboxImg.classList.add("portrait");
+        } else if (lightboxImg.naturalWidth > lightboxImg.naturalHeight) {
+            lightboxImg.classList.add("landscape");
+        } else {
+            lightboxImg.classList.add("square");
+        }
+    }
+
+    function updateLightboxThumbs() {
+        lightboxThumbs.forEach((thumb, index) => {
+            thumb.classList.toggle("active", index === currentIndex);
+        });
+        const activeThumb = lightboxThumbs[currentIndex];
+        if (activeThumb) {
+            activeThumb.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+    }
+
+    function startLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
+        lightboxAutoTimer = setInterval(() => {
+            if (lightbox.style.display === "flex") { changeImage(1, false); }
+        }, LIGHTBOX_AUTO_DELAY);
+    }
+    
+    function stopLightboxAutoSlide() {
+        clearInterval(lightboxAutoTimer);
+        lightboxAutoTimer = null;
     }
 
     function openGallery(index) {
@@ -155,18 +584,86 @@
         lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[index].src;
         if (lightboxImg.complete) applyOrientationClass();
+
         lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        updateLightboxThumbs();
+        startLightboxAutoSlide();
     }
 
-    function closePhoto() { lightbox.style.display = "none"; }
+    function closePhoto() {
+        stopLightboxAutoSlide();
+        lightbox.style.display = "none";
+        document.body.style.overflow = "";
+    }
 
-    function changeImage(direction) {
+    function changeImage(direction, restartAuto = true) {
         currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
+        lightboxImg.onload = applyOrientationClass;
         lightboxImg.src = galleryImages[currentIndex].src;
-        applyOrientationClass();
+        if (lightboxImg.complete) applyOrientationClass();
+
+        updateLightboxThumbs();
+        if (restartAuto) { startLightboxAutoSlide(); }
     }
 
-    galleryImages.forEach((img, index) => img.addEventListener("click", () => openGallery(index)));
+    galleryImages.forEach((img, index) => {
+        img.addEventListener("click", () => openGallery(index));
+    });
+
+    lightboxImg.addEventListener("click", (event) => { event.stopPropagation(); });
+
+    document.querySelectorAll(".lightbox .arrow, .close-lightbox").forEach((control) => {
+        control.addEventListener("click", (event) => { event.stopPropagation(); });
+    });
+
+    lightboxThumbs.forEach((thumb) => {
+        thumb.addEventListener("click", (event) => {
+            event.stopPropagation();
+            currentIndex = Number(thumb.dataset.index);
+            
+            lightboxImg.onload = applyOrientationClass;
+            lightboxImg.src = galleryImages[currentIndex].src;
+            if (lightboxImg.complete) applyOrientationClass();
+            
+            updateLightboxThumbs();
+            startLightboxAutoSlide();
+        });
+    });
+
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) { closePhoto(); }
+    });
+
+    // 5. 꽃잎 날리기 효과
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        const type = Math.floor(Math.random() * 3) + 1;
+        petal.classList.add('type' + type);
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = Math.random() * 5 + 8 + 's';
+        document.body.appendChild(petal);
+        setTimeout(() => { petal.remove(); }, 13000);
+    }
+    setInterval(createPetal, 800);
+
+    // 6. 예식일 D-day 계산
+    function updateWeddingDday() {
+        const ddayElement = document.getElementById("weddingDday");
+        if (!ddayElement) return;
+        const now = new Date();
+        const todayUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+        const weddingUtc = Date.UTC(2026, 10, 15);
+        const oneDay = 24 * 60 * 60 * 1000;
+        const dayDifference = Math.round((weddingUtc - todayUtc) / oneDay);
+
+        if (dayDifference > 0) { ddayElement.textContent = "예식일까지 " + dayDifference + "일 남았습니다"; } 
+        else if (dayDifference === 0) { ddayElement.textContent = "오늘은 예식일입니다"; } 
+        else { ddayElement.textContent = "예식일로부터 " + Math.abs(dayDifference) + "일 지났습니다"; }
+    }
+    updateWeddingDday();
 </script>
+
 </body>
 </html>
