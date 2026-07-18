@@ -1057,7 +1057,126 @@
             }
         }
 
+
+        /* =========================================================
+           최종 수정
+           1. 혼주 정보를 카드 중앙으로 이동
+           2. 확대 갤러리 하단 썸네일 확대
+           3. 세로·가로 사진을 썸네일 위의 가용 영역 중앙에 배치
+        ========================================================= */
+
+        .family-row {
+            grid-template-columns: 72px minmax(0, 190px) !important;
+            justify-content: center !important;
+            column-gap: 18px !important;
+        }
+
+        .family-side {
+            text-align: center !important;
+        }
+
+        .family-text {
+            width: 100% !important;
+            text-align: left !important;
+        }
+
+        .family-text strong {
+            margin-left: 0 !important;
+        }
+
+        .lightbox {
+            align-items: center !important;
+            justify-content: center !important;
+            padding:
+                calc(44px + env(safe-area-inset-top))
+                8px
+                calc(126px + env(safe-area-inset-bottom)) !important;
+        }
+
+        .lightbox-content.portrait,
+        .lightbox-content.landscape,
+        .lightbox-content.square {
+            margin-top: 0 !important;
+            max-height: calc(var(--vv-height, 100dvh) - 182px) !important;
+        }
+
+        .lightbox-content.landscape {
+            align-self: center !important;
+            object-position: center center !important;
+        }
+
+        .lightbox-thumb-strip {
+            bottom: calc(4px + env(safe-area-inset-bottom)) !important;
+            gap: 10px !important;
+            min-height: 116px !important;
+            padding: 11px 12px 13px !important;
+            align-items: center !important;
+        }
+
+        .lightbox-thumb {
+            flex: 0 0 100px !important;
+            width: 100px !important;
+            height: 88px !important;
+            padding: 3px !important;
+            border-radius: 9px !important;
+        }
+
+        .lightbox-thumb img {
+            border-radius: 6px !important;
+        }
+
+        @media (max-width: 600px) {
+            .family-card {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .family-row {
+                grid-template-columns: 68px minmax(0, 182px) !important;
+                column-gap: 16px !important;
+            }
+
+            .lightbox {
+                padding:
+                    calc(42px + env(safe-area-inset-top))
+                    8px
+                    calc(124px + env(safe-area-inset-bottom)) !important;
+            }
+
+            .lightbox-content.portrait,
+            .lightbox-content.landscape,
+            .lightbox-content.square {
+                max-height: calc(var(--vv-height, 100dvh) - 176px) !important;
+            }
+
+            .lightbox-thumb-strip {
+                min-height: 112px !important;
+                gap: 9px !important;
+                padding: 10px 10px 12px !important;
+            }
+
+            .lightbox-thumb {
+                flex-basis: 96px !important;
+                width: 96px !important;
+                height: 84px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .family-row {
+                grid-template-columns: 64px minmax(0, 170px) !important;
+                column-gap: 12px !important;
+            }
+
+            .lightbox-thumb {
+                flex-basis: 90px !important;
+                width: 90px !important;
+                height: 80px !important;
+            }
+        }
+
 </style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=11161"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=10186"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=8768"></script>
 <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=16616"></script>
