@@ -46,25 +46,32 @@
             padding-bottom: 60px; 
         }
 
-        /* 메인 커버: 사진 비율을 살리되 여백을 없애고 텍스트를 위로 밀착 */
+        /* 메인 커버: 사진이 잘리지 않도록 img 태그 구조 및 오버레이 적용 */
         .cover {
             position: relative;
             width: 100%;
-            background-image: url('main.jpg');
-            background-size: 100% auto; /* 가로에 꽉 채우고 세로 비율 자동 조절 */
-            background-repeat: no-repeat;
-            background-position: center top;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 72vw 20px 25px 20px; /* 상단 여백을 vw 단위로 주어 사진이 바로 보이게 함 */
+            background-color: #ffffff;
             text-align: center;
+            overflow: hidden;
+        }
+        .cover-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .cover-text-box {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 20px 30px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
             color: #fff;
             text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
         }
         .cover-title {
             display: block; width: calc(100% - 32px); max-width: 460px;
-            margin: 0 auto 8px; padding: 0 4px;
+            margin: 0 auto 6px; padding: 0 4px;
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2rem, 8vw, 2.6rem);
             font-weight: 400; letter-spacing: 0; line-height: 1.15;
@@ -73,7 +80,7 @@
         }
         .cover-names {
             font-family: 'Noto Serif KR', serif; font-size: 1.8rem;
-            font-weight: 600; margin-bottom: 12px; letter-spacing: 1.5px;
+            font-weight: 600; margin-bottom: 10px; letter-spacing: 1.5px;
             text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
         .cover-date {
@@ -307,10 +314,13 @@
 
 <div class="container">
     <div class="cover">
-        <div class="cover-title">Wedding Invitation</div>
-        <div class="cover-names">서진성 · 김성은</div>
-        <div class="cover-date">2026년 11월 15일 일요일 낮 12:00</div>
-        <div class="cover-place">글로리아 웨딩홀 3층 비스타홀</div>
+        <img src="main.jpg" alt="메인 사진" class="cover-img">
+        <div class="cover-text-box">
+            <div class="cover-title">Wedding Invitation</div>
+            <div class="cover-names">서진성 · 김성은</div>
+            <div class="cover-date">2026년 11월 15일 일요일 낮 12:00</div>
+            <div class="cover-place">글로리아 웨딩홀 3층 비스타홀</div>
+        </div>
     </div>
 
     <div class="section">
