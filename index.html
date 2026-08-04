@@ -113,21 +113,21 @@
         }
         .family-text {
             flex: 0 0 170px; 
-            text-align: center; /* 텍스트 중앙 정렬 */
+            text-align: center; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
-            align-items: center; /* 가로 중앙 정렬 추가 */
+            align-items: center; 
             line-height: 1.8; 
             color: #555; 
             font-size: 0.93rem;
         }
         .family-text strong { 
             color: #111; 
-            font-size: 1.12rem; /* 이름 글자 크기 약간 강조 */
+            font-size: 1.12rem; 
             font-weight: 700; 
             margin-left: 0; 
-            margin-top: 2px; /* 부모님 성함과의 간격 */
+            margin-top: 2px; 
         }
         .family-parent { color: #777; letter-spacing: -0.2px; font-size: 0.85rem; }
 
@@ -147,6 +147,14 @@
         .btn { padding: 12px 20px; border-radius: 5px; text-decoration: none; font-size: 0.9rem; flex: 1; text-align: center; }
         .btn-naver { background-color: #03C75A; color: #fff; }
         .btn-kakao { background-color: #FEE500; color: #000; }
+        
+        /* 지도 주소 텍스트 스타일 */
+        .location-address {
+            margin-top: 15px;
+            font-size: 0.93rem;
+            color: var(--gray-text);
+            font-family: 'Pretendard', sans-serif;
+        }
 
         .account-btn { width: 100%; padding: 15px; background-color: #f9f9f9; border: none; border-bottom: 1px solid #eee; text-align: left; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; font-family: 'Pretendard', sans-serif; }
         .account-info { display: none; padding: 20px; background-color: #fff; font-size: 0.9rem; color: #555; text-align: left; }
@@ -165,9 +173,7 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .gallery-img { width: 100%; aspect-ratio: 1 / 1; height: auto; object-fit: cover; display: block; border-radius: 4px; cursor: pointer; }
 
-        /* =======================================================
-           갤러리 확대 화면 (완전 새단장 및 위아래 일괄 크롭 적용)
-           ======================================================= */
+        /* 갤러리 확대 화면 */
         .lightbox { 
             display: none; 
             position: fixed; 
@@ -206,7 +212,6 @@
         .prev { left: 5px; }
         .next { right: 5px; }
 
-        /* 갤러리 메인 사진 - 기본 설정 (가로, 정방형) */
         .lightbox-content {
             flex: 1;
             display: flex;
@@ -219,7 +224,6 @@
             touch-action: none;
         }
 
-        /* 세로 사진 일괄 꽉채우기 및 위아래 크롭 */
         .lightbox-content.portrait {
             width: 100vw !important;
             max-width: 500px !important;
@@ -230,7 +234,6 @@
             object-position: center center !important; 
         }
         
-        /* 가로/정방형 사진은 안 잘리게 유지 */
         .lightbox-content.landscape,
         .lightbox-content.square {
             width: 100vw !important;
@@ -238,7 +241,6 @@
             object-fit: contain !important;
         }
 
-        /* 하단 썸네일 스트립 */
         .lightbox-thumb-strip {
             width: 100%;
             min-height: 150px;
@@ -368,6 +370,8 @@
             <a href="https://naver.me/GUwSjbeY" class="btn btn-naver" target="_blank">네이버 지도</a>
             <a href="https://kko.to/L-Hwc-TRAj" class="btn btn-kakao" target="_blank">카카오맵</a>
         </div>
+        <!-- 추가된 주소 텍스트 -->
+        <div class="location-address">전남광주 서구 상무대로 683</div>
     </div>
 
     <div class="section" style="background-color:#fafafa;">
@@ -545,7 +549,6 @@
     let lightboxAutoTimer = null;
     const LIGHTBOX_AUTO_DELAY = 4500;
 
-    // 사진의 비율을 감지하여 클래스 부여 (세로사진 꽉차게 자르기 위해 필수)
     function applyOrientationClass() {
         lightboxImg.classList.remove("portrait", "landscape", "square");
         if (lightboxImg.naturalHeight > lightboxImg.naturalWidth) {
