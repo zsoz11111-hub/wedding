@@ -148,12 +148,25 @@
         .btn-naver { background-color: #03C75A; color: #fff; }
         .btn-kakao { background-color: #FEE500; color: #000; }
         
-        /* 지도 주소 텍스트 스타일 */
-        .location-address {
-            margin-top: 15px;
-            font-size: 0.93rem;
-            color: var(--gray-text);
+        /* 개선된 지도 주소 카드 디자인 스타일 */
+        .location-address-box {
+            margin-top: 20px;
+            padding: 16px 20px;
+            background-color: #faf9f9;
+            border: 1px solid #f0e6e6;
+            border-radius: 12px;
+            text-align: center;
             font-family: 'Pretendard', sans-serif;
+        }
+        .location-address-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 4px;
+        }
+        .location-address-desc {
+            font-size: 0.85rem;
+            color: #777;
         }
 
         .account-btn { width: 100%; padding: 15px; background-color: #f9f9f9; border: none; border-bottom: 1px solid #eee; text-align: left; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; font-family: 'Pretendard', sans-serif; }
@@ -370,8 +383,12 @@
             <a href="https://naver.me/GUwSjbeY" class="btn btn-naver" target="_blank">네이버 지도</a>
             <a href="https://kko.to/L-Hwc-TRAj" class="btn btn-kakao" target="_blank">카카오맵</a>
         </div>
-        <!-- 추가된 주소 텍스트 -->
-        <div class="location-address">전남광주 서구 상무대로 683</div>
+        
+        <!-- 디자인이 가미된 주소 카드 박스 -->
+        <div class="location-address-box">
+            <div class="location-address-title">광주 서구 상무대로 683</div>
+            <div class="location-address-desc">(지번) 마륵동 173-9</div>
+        </div>
     </div>
 
     <div class="section" style="background-color:#fafafa;">
