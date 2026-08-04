@@ -46,44 +46,45 @@
             padding-bottom: 60px; 
         }
 
-        /* 메인 커버 - 사진이 잘리지 않도록 contain 및 여백 배경 적용 */
+        /* 메인 커버 - 위아래 여백을 줄이고 사진과 텍스트를 최적화 */
         .cover {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: auto;
+            min-height: 85vh;
             background-image: url('main.jpg');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center;
-            background-color: #f9f9f9; /* 사진이 다 안 차는 여백 공간의 색상 */
+            background-position: center top;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 80px;
+            padding: 300px 20px 40px 20px; /* 상단 여백 확보 및 하단 여백 축소 */
             text-align: center;
             color: #fff;
-            text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.6);
         }
         .cover-title {
             display: block; width: calc(100% - 32px); max-width: 460px;
-            margin: 0 auto 24px; padding: 0 4px;
+            margin: 0 auto 12px; padding: 0 4px;
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.15rem, 8.8vw, 2.85rem);
             font-weight: 400; letter-spacing: 0; line-height: 1.15;
             white-space: nowrap; overflow: hidden;
-            text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.38);
+            text-align: center; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .cover-names {
             font-family: 'Noto Serif KR', serif; font-size: 2rem;
-            font-weight: 600; margin-bottom: 24px; letter-spacing: 1.5px;
+            font-weight: 600; margin-bottom: 16px; letter-spacing: 1.5px;
         }
         .cover-date {
-            font-family: 'Noto Serif KR', serif; font-size: 1.08rem;
-            font-weight: 500; opacity: 0.96; letter-spacing: 0.3px; line-height: 1.75;
+            font-family: 'Noto Serif KR', serif; font-size: 1.05rem;
+            font-weight: 500; opacity: 0.98; letter-spacing: 0.3px; line-height: 1.6;
         }
         .cover-place {
-            font-family: 'Noto Serif KR', serif; font-size: 1.02rem;
-            font-weight: 500; line-height: 1.65; letter-spacing: 0.2px; margin-top: 2px;
+            font-family: 'Noto Serif KR', serif; font-size: 0.98rem;
+            font-weight: 500; line-height: 1.5; letter-spacing: 0.2px; margin-top: 2px;
         }
 
         .section { padding: 50px 20px; text-align: center; border-bottom: 1px solid #eee; }
