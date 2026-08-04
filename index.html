@@ -46,14 +46,16 @@
             padding-bottom: 60px; 
         }
 
-        /* 메인 커버 */
+        /* 메인 커버 - 사진이 잘리지 않도록 contain 및 여백 배경 적용 */
         .cover {
             position: relative;
             width: 100%;
             height: 100vh;
             background-image: url('main.jpg');
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
+            background-color: #f9f9f9; /* 사진이 다 안 차는 여백 공간의 색상 */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -148,7 +150,7 @@
         .btn-naver { background-color: #03C75A; color: #fff; }
         .btn-kakao { background-color: #FEE500; color: #000; }
         
-        /* 개선된 지도 주소 카드 디자인 스타일 */
+        /* 지도 주소 카드 디자인 스타일 */
         .location-address-box {
             margin-top: 20px;
             padding: 16px 20px;
@@ -384,9 +386,8 @@
             <a href="https://kko.to/L-Hwc-TRAj" class="btn btn-kakao" target="_blank">카카오맵</a>
         </div>
         
-        <!-- 디자인이 가미된 주소 카드 박스 -->
         <div class="location-address-box">
-            <div class="location-address-title">광주 서구 상무대로 683</div>
+            <div class="location-address-title">전남광주 서구 상무대로 683</div>
             <div class="location-address-desc">(지번) 마륵동 173-9</div>
         </div>
     </div>
